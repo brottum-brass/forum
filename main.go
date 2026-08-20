@@ -1,29 +1,26 @@
 package main
 
 import (
-	"fmt"
 	"log"
-	"net/http"
+
+	"github.com/brottum-brass/forum/src/api"
+	"github.com/brottum-brass/forum/src/api/middleware"
+	"github.com/brottum-brass/forum/src/api/router"
+	"github.com/brottum-brass/forum/src/utils"
 )
 
 func main() {
-	/*
-		port, exists := os.LookupEnv("PORT")
-		if !exists {
-			log.Fatal("Environment variable 'PORT' is not set")
-		}
+	appCtx := utils.GetAppContext()
 
-		portInt, err := strconv.Atoi(port)
-		if err != nil {
-			log.Fatalf("Invalid port number: %v", err)
-		}
-	*/
+	counter := middleware.NewCounter()
+	logger := middleware.NewLogger()
+	preference := middleware.NewPreference()
+	router := router.NewRouter()
 
-	portInt := 8080
+	mux := counter.Next(logger.Next(preference.Next(router)))
 
-	mux := http.NewServeMux()
-
-	mux.Handle("GET /", http.FileServer(http.Dir("./static/html")))
-
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", portInt), mux))
+	server := api.NewServer(appCtx.Config.Port, mux)
+	if err := server.Start(); err != nil {
+		log.Fatal(err)
+	}
 }
