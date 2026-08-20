@@ -32,7 +32,7 @@ func LanguageHandler() http.HandlerFunc {
 		themeMode := utils.GetAppContext().Theme.T(updatedRequest.Context(), currentPrefs.Theme)
 
 		if updatedRequest.Header.Get("HX-Request") == "true" {
-			html.AppRoot(languageContent, themeMode, html.HomeContent(languageContent, themeMode)).Render(updatedRequest.Context(), w)
+			html.Body(languageContent, themeMode, html.HomeContent(languageContent, themeMode)).Render(updatedRequest.Context(), w)
 			return
 		}
 

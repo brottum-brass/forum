@@ -1,0 +1,24 @@
+package html
+
+import (
+    "github.com/brottum-brass/forum/src/utils/language"
+    "github.com/brottum-brass/forum/src/utils/theme"
+)
+
+templ NavItem(href string, iconPath string, label string, theme theme.Mode) {
+    <a href={ templ.SafeURL(href) } class={ "group flex items-center space-x-2 font-medium transition hover:text-amber-500 " + theme.SecondaryText }>
+        <img src={ iconPath } alt="" class={ "h-5 w-5 transition group-hover:brightness-125 " + theme.IconFilter }/>
+        <span>{ label }</span>
+    </a>
+}
+
+templ DesktopNav(language language.Content, theme theme.Mode) {
+    <nav>
+        <ul class="flex items-center space-x-6">
+            <li>@NavItem("/events", "/static/icons/events.svg", language.Header.Events, theme)</li>
+            <li>@NavItem("/about", "/static/icons/about.svg", language.Header.About, theme)</li>
+            <li>@NavItem("/members", "/static/icons/members.svg", language.Header.Members, theme)</li>
+            <li>@NavItem("/contact", "/static/icons/contact.svg", language.Header.Contact, theme)</li>
+        </ul>
+    </nav>
+}
