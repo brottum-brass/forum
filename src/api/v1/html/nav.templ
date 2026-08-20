@@ -1,24 +1,59 @@
 package html
 
 import (
-    "github.com/brottum-brass/forum/src/utils/language"
-    "github.com/brottum-brass/forum/src/utils/theme"
+	"github.com/brottum-brass/forum/src/utils/language"
+	"github.com/brottum-brass/forum/src/utils/theme"
 )
 
 templ NavItem(href string, iconPath string, label string, theme theme.Mode) {
-    <a href={ templ.SafeURL(href) } class={ "group flex items-center space-x-2 font-medium transition hover:text-amber-500 " + theme.SecondaryText }>
-        <img src={ iconPath } alt="" class={ "h-5 w-5 transition group-hover:brightness-125 " + theme.IconFilter }/>
-        <span>{ label }</span>
-    </a>
+	<a href={ templ.SafeURL(href) } class={ "group flex items-center space-x-2 font-medium transition hover:text-amber-500 whitespace-nowrap " + theme.SecondaryText }>
+		<img src={ iconPath } alt={ label } class={ "h-5 w-5 transition group-hover:brightness-125 " + theme.IconFilter }/>
+		<span class="hidden lg:inline">{ label }</span>
+	</a>
 }
 
 templ DesktopNav(language language.Content, theme theme.Mode) {
-    <nav>
-        <ul class="flex items-center space-x-6">
-            <li>@NavItem("/events", "/static/icons/events.svg", language.Header.Events, theme)</li>
-            <li>@NavItem("/about", "/static/icons/about.svg", language.Header.About, theme)</li>
-            <li>@NavItem("/members", "/static/icons/members.svg", language.Header.Members, theme)</li>
-            <li>@NavItem("/contact", "/static/icons/contact.svg", language.Header.Contact, theme)</li>
-        </ul>
-    </nav>
+	<nav class="hidden md:block">
+		<ul class="flex flex-row items-center space-x-4 lg:space-x-6">
+			<li>@NavItem("/events", "/static/icons/events.svg", language.Header.Events, theme)</li>
+			<li>@NavItem("/about", "/static/icons/about.svg", language.Header.About, theme)</li>
+			<li>@NavItem("/members", "/static/icons/members.svg", language.Header.Members, theme)</li>
+			<li>@NavItem("/contact", "/static/icons/contact.svg", language.Header.Contact, theme)</li>
+		</ul>
+	</nav>
+}
+
+templ HamburgerButton(theme theme.Mode) {
+	<button 
+		type="button"
+		aria-label="Toggle Navigation Menu"
+		onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+		class={ "p-2 rounded-lg transition hover:bg-amber-500/10 focus:outline-none border border-transparent hover:border-amber-500/30 md:hidden " + theme.SecondaryText }
+	>
+		<img src="/static/icons/menu-burger.svg" alt="Menu" class={ "h-6 w-6 " + theme.IconFilter }/>
+	</button>
+}
+
+templ MobileNav(language language.Content, theme theme.Mode) {
+	<div id="mobile-menu" class={ "hidden md:hidden border-t transition-all duration-200 " + theme.SecondaryBackground + " " + theme.PrimaryBorder }>
+		<nav class="container mx-auto px-4 py-4 flex flex-col space-y-3">
+			<div onclick="document.getElementById('mobile-menu').classList.add('hidden')">
+				@NavItem("/events", "/static/icons/events.svg", language.Header.Events, theme)
+			</div>
+			<div onclick="document.getElementById('mobile-menu').classList.add('hidden')">
+				@NavItem("/about", "/static/icons/about.svg", language.Header.About, theme)
+			</div>
+			<div onclick="document.getElementById('mobile-menu').classList.add('hidden')">
+				@NavItem("/members", "/static/icons/members.svg", language.Header.Members, theme)
+			</div>
+			<div onclick="document.getElementById('mobile-menu').classList.add('hidden')">
+				@NavItem("/contact", "/static/icons/contact.svg", language.Header.Contact, theme)
+			</div>
+
+			<div class={ "pt-3 border-t flex items-center justify-between " + theme.PrimaryBorder }>
+				<span class={ "text-sm font-medium " + theme.SecondaryText }>Language</span>
+				@LanguageSelect(language, theme)
+			</div>
+		</nav>
+	</div>
 }
