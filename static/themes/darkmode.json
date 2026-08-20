@@ -1,0 +1,11 @@
+{
+    "name": "darkmode",
+    "primary_background": "bg-slate-950",
+    "secondary_background": "bg-slate-750",
+    "primary_text": "text-slate-100",
+    "secondary_text": "text-slate-300",
+    "primary_border": "border-slate-800",
+    "secondary_border": "border-slate-600",
+    "accent": "bg-amber-500",
+    "icon_filter": "invert"
+}

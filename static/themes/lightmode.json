@@ -1,0 +1,11 @@
+{
+    "name": "lightmode",
+    "primary_background": "bg-white",
+    "secondary_background": "bg-slate-200",
+    "primary_text": "text-slate-900",
+    "secondary_text": "text-slate-700",
+    "primary_border": "border-slate-200",
+    "secondary_border": "border-slate-400",
+    "accent": "bg-amber-500",
+    "icon_filter": ""
+}
