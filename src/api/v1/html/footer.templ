@@ -1,0 +1,36 @@
+package html
+
+import (
+    "github.com/brottum-brass/forum/src/utils/language"
+    "github.com/brottum-brass/forum/src/utils/theme"
+)
+
+templ SocialLink(href string, iconPath string, altText string, theme theme.Mode) {
+    <a href={ templ.SafeURL(href) } target="_blank" rel="noopener noreferrer" class="p-1.5 rounded-md hover:bg-amber-500/10 transition group">
+        <img src={ iconPath } alt={ altText } class={ "h-5 w-5 opacity-80 group-hover:opacity-100 " + theme.IconFilter }/>
+    </a>
+}
+
+templ Footer(language language.Content, theme theme.Mode) {
+    <footer class={ "border-t mt-auto transition-colors duration-200 relative " + theme.SecondaryBackground + " " + theme.PrimaryBorder }>
+        <div class="h-[3px] bg-gradient-to-r from-transparent via-amber-500/50 to-transparent w-full absolute top-0 left-0"></div>
+
+        <div class="container mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <img src="/static/icons/logo_transparent.png" alt="Logo" class="h-6 w-auto"/>
+                <span class={ "font-semibold " + theme.PrimaryText }>
+                    { language.Common.Name }
+                </span>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                @SocialLink("https://facebook.com/brottumbrass", "/static/icons/facebook.svg", "Facebook", theme)
+                @SocialLink("https://instagram.com/brottumbrass", "/static/icons/instagram.svg", "Instagram", theme)
+            </div>
+
+            <p class={ "text-sm " + theme.SecondaryText }>
+                { language.Footer.Copyright }
+            </p>
+        </div>
+    </footer>
+}

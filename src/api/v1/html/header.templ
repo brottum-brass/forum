@@ -1,0 +1,27 @@
+package html
+
+import (
+    "github.com/brottum-brass/forum/src/utils/language"
+    "github.com/brottum-brass/forum/src/utils/theme"
+)
+
+templ Header(language language.Content, theme theme.Mode) {
+    <header class={ "border-b sticky top-0 z-50 transition-colors duration-200 shadow-sm " + theme.SecondaryBackground + " " + theme.PrimaryBorder }>
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                @BrandLogo(language.Common.Name, theme)
+            </div>
+
+            <div class="flex items-center space-x-8">
+                @DesktopNav(language, theme)
+            </div>
+
+            <div class={ "flex items-center space-x-4 border-l pl-6 " + theme.PrimaryBorder }>
+                @ThemeToggle(theme)
+                @LanguageSelect(language, theme)
+            </div>
+        </div>
+
+        <div class="h-[3px] bg-gradient-to-r from-transparent via-amber-500/50 to-transparent w-full absolute bottom-0 left-0"></div>
+    </header>
+}

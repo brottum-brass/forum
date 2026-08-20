@@ -1,0 +1,37 @@
+package html
+
+import (
+    "github.com/brottum-brass/forum/src/utils/language"
+    "github.com/brottum-brass/forum/src/utils/theme"
+)
+
+templ ThemeToggle(theme theme.Mode) {
+    <button 
+        hx-get="/toggle-theme" 
+        hx-target="#app-root" 
+        hx-swap="outerHTML transition:true"
+        type="button" 
+        aria-label="Toggle Theme"
+        class={ "p-2 rounded-lg transition focus:outline-none hover:bg-amber-500/10 hover:text-amber-500 border border-transparent hover:border-amber-500/30 " + theme.SecondaryText }
+    >
+        if theme.Name == "darkmode" {
+            <img src="/static/icons/sun.svg" alt="Light Mode" class={ "h-5 w-5 " + theme.IconFilter }/>
+        } else {
+            <img src="/static/icons/moon.svg" alt="Dark Mode" class={ "h-5 w-5 " + theme.IconFilter }/>
+        }
+    </button>
+}
+
+templ LanguageSelect(language language.Content, theme theme.Mode) {
+    <select 
+        name="language"
+        hx-get="/change-language" 
+        hx-target="#app-root"
+        hx-swap="outerHTML transition:true"
+        hx-trigger="change"
+        class={ "text-sm rounded-lg p-2 font-medium border hover:border-amber-500 focus:ring-2 focus:ring-amber-500 focus:outline-none transition cursor-pointer " + theme.SecondaryBackground + " " + theme.PrimaryBorder + " " + theme.PrimaryText }
+    >
+        <option value="en" selected?={ language.Common.Language == "en" }>EN</option>
+        <option value="no" selected?={ language.Common.Language == "no" }>NO</option>
+    </select>
+}

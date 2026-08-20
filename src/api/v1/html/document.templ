@@ -1,0 +1,40 @@
+package html
+
+import (
+    "github.com/brottum-brass/forum/src/utils/language"
+    "github.com/brottum-brass/forum/src/utils/theme"
+)
+
+templ Document(language language.Content, theme theme.Mode, content templ.Component) {
+    <!DOCTYPE html>
+    <html lang={ language.Common.Language }>
+        @Head(language.Common.Title)
+        <body class="min-h-screen flex flex-col">
+            @Body(language, theme, content)
+        </body>
+    </html>
+}
+
+templ Head(title string) {
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="htmx-config" content='{"globalViewTransitions": true}'/>
+        <title>{ title }</title>
+        <link rel="icon" href="/static/icons/logo_transparent.png" type="image/png"/>
+        <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js" integrity="sha384-H5SrcfygHmAuTDZphMHqBJLc3FhssKjG7w/CeCpFReSfwBWDTKpkzPP8c+cLsK+V" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/static/css/output.css"/>
+    </head>
+}
+
+templ Body(language language.Content, theme theme.Mode, content templ.Component) {
+    <div id="app-root" class={ "min-h-screen flex flex-col w-full transition-colors duration-200 " + theme.PrimaryBackground + " " + theme.PrimaryText }>
+        @Header(language, theme)
+        
+        <main class="flex-grow container mx-auto px-4 py-6">
+            @content
+        </main>
+
+        @Footer(language, theme)
+    </div>
+}
