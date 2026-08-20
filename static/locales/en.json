@@ -1,0 +1,17 @@
+{
+    "common": {
+        "language": "en",
+        "title": "Brøttum Brass",
+        "name": "Brøttum Brass"
+    },
+    "header": {
+        "home": "Home",
+        "events": "Events",
+        "about": "About",
+        "members": "Members",
+        "contact": "Contact"
+    },
+    "footer": {
+        "copyright": "© 2026 Erlend Rømo. All rights reserved."
+    }
+}
