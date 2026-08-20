@@ -1,0 +1,11 @@
+package html
+
+import "github.com/brottum-brass/forum/src/utils/language"
+import "github.com/brottum-brass/forum/src/utils/theme"
+
+templ HomeContent(language language.Content, theme theme.Mode) {
+    <div>
+        <h2>Welcome to {language.Common.Title}</h2>
+        <p>This is the main content of the home page.</p>
+    </div>
+}
