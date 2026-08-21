@@ -6,6 +6,12 @@
     "secondary_text": "text-slate-700",
     "primary_border": "border-slate-200",
     "secondary_border": "border-slate-400",
-    "accent": "bg-amber-500",
+    "accent_text": "text-brand-gold",
+    "accent_hover_text": "group-hover:text-brand-gold",
+    "accent_group_hover_text": "group-hover:text-brand-gold",
+    "accent_focus_ring": "focus:ring-brand-gold",
+    "accent_gradient": "via-brand-gold/50",
+    "hover_background": "hover:bg-brand-gold/10",
+    "hover_border": "hover:border-brand-gold/30",
     "icon_filter": ""
 }
