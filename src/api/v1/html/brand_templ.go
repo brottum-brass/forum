@@ -37,7 +37,7 @@ func BrandLogo(name string, theme theme.Mode) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var2 = []any{"text-xl font-bold transition group-hover:text-amber-500 " + theme.PrimaryText}
+		var templ_7745c5c3_Var2 = []any{"text-xl font-bold transition " + theme.AccentHoverText + " " + theme.PrimaryText}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err

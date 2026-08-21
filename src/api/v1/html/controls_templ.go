@@ -34,7 +34,7 @@ func ThemeToggle(theme theme.Mode) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		var templ_7745c5c3_Var2 = []any{"p-2 rounded-lg transition focus:outline-none hover:bg-amber-500/10 hover:text-amber-500 border border-transparent hover:border-amber-500/30 " + theme.SecondaryText}
+		var templ_7745c5c3_Var2 = []any{"p-2 rounded-lg transition focus:outline-none border border-transparent " + theme.HoverBackground + " " + theme.AccentHoverText + " " + theme.HoverBorder + " " + theme.SecondaryText}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -132,7 +132,7 @@ func LanguageSelect(language language.Content, theme theme.Mode) templ.Component
 			templ_7745c5c3_Var8 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		var templ_7745c5c3_Var9 = []any{"text-sm rounded-lg p-2 font-medium border hover:border-amber-500 focus:ring-2 focus:ring-amber-500 focus:outline-none transition cursor-pointer " + theme.SecondaryBackground + " " + theme.PrimaryBorder + " " + theme.PrimaryText}
+		var templ_7745c5c3_Var9 = []any{"text-sm rounded-lg p-2 font-medium border focus:ring-2 focus:outline-none transition cursor-pointer " + theme.HoverBorder + " " + theme.AccentFocusRing + " " + theme.SecondaryBackground + " " + theme.PrimaryBorder + " " + theme.PrimaryText}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var9...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err

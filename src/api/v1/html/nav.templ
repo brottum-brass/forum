@@ -5,20 +5,45 @@ import (
 	"github.com/brottum-brass/forum/src/utils/theme"
 )
 
-templ NavItem(href string, iconPath string, label string, theme theme.Mode) {
-	<a href={ templ.SafeURL(href) } class={ "group flex items-center space-x-2 font-medium transition hover:text-amber-500 whitespace-nowrap " + theme.SecondaryText }>
-		<img src={ iconPath } alt={ label } class={ "h-5 w-5 transition group-hover:brightness-125 " + theme.IconFilter }/>
-		<span class="hidden lg:inline">{ label }</span>
+templ DesktopNavItem(href string, iconPath string, label string, theme theme.Mode) {
+	<a 
+		href={ templ.SafeURL(href) } 
+		class={ "group flex items-center justify-center px-2 lg:px-3 py-2 lg:space-x-2 rounded-lg transition-all duration-150 whitespace-nowrap " + theme.HoverBackground + " " + theme.SecondaryText }
+	>
+		<img 
+			src={ iconPath } 
+			alt={ label } 
+			class={ "h-5 w-5 transition-transform duration-150 group-hover:scale-110 " + theme.IconFilter }
+		/>
+		<span class={ "hidden lg:inline transition-colors duration-150 " + theme.AccentGroupHoverText }>
+			{ label }
+		</span>
+	</a>
+}
+
+templ MobileNavItem(href string, iconPath string, label string, theme theme.Mode) {
+	<a 
+		href={ templ.SafeURL(href) } 
+		class={ "group flex items-center space-x-3 px-3 py-2.5 rounded-lg transition-all duration-150 " + theme.HoverBackground + " " + theme.PrimaryText }
+	>
+		<img 
+			src={ iconPath } 
+			alt={ label } 
+			class={ "h-5 w-5 transition-transform duration-150 group-hover:scale-110 " + theme.IconFilter }
+		/>
+		<span class={ "font-medium transition-colors duration-150 " + theme.AccentGroupHoverText }>
+			{ label }
+		</span>
 	</a>
 }
 
 templ DesktopNav(language language.Content, theme theme.Mode) {
 	<nav class="hidden md:block">
-		<ul class="flex flex-row items-center space-x-4 lg:space-x-6">
-			<li>@NavItem("/events", "/static/icons/events.svg", language.Header.Events, theme)</li>
-			<li>@NavItem("/about", "/static/icons/about.svg", language.Header.About, theme)</li>
-			<li>@NavItem("/members", "/static/icons/members.svg", language.Header.Members, theme)</li>
-			<li>@NavItem("/contact", "/static/icons/contact.svg", language.Header.Contact, theme)</li>
+		<ul class="flex flex-row items-center space-x-1 lg:space-x-2">
+			<li>@DesktopNavItem("/events", "/static/icons/events.svg", language.Header.Events, theme)</li>
+			<li>@DesktopNavItem("/about", "/static/icons/about.svg", language.Header.About, theme)</li>
+			<li>@DesktopNavItem("/members", "/static/icons/members.svg", language.Header.Members, theme)</li>
+			<li>@DesktopNavItem("/contact", "/static/icons/contact.svg", language.Header.Contact, theme)</li>
 		</ul>
 	</nav>
 }
@@ -28,7 +53,7 @@ templ HamburgerButton(theme theme.Mode) {
 		type="button"
 		aria-label="Toggle Navigation Menu"
 		onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
-		class={ "p-2 rounded-lg transition hover:bg-amber-500/10 focus:outline-none border border-transparent hover:border-amber-500/30 md:hidden " + theme.SecondaryText }
+		class={ "p-2 rounded-lg transition focus:outline-none border border-transparent md:hidden " + theme.HoverBackground + " " + theme.HoverBorder + " " + theme.SecondaryText }
 	>
 		<img src="/static/icons/menu-burger.svg" alt="Menu" class={ "h-6 w-6 " + theme.IconFilter }/>
 	</button>
@@ -36,18 +61,18 @@ templ HamburgerButton(theme theme.Mode) {
 
 templ MobileNav(language language.Content, theme theme.Mode) {
 	<div id="mobile-menu" class={ "hidden md:hidden border-t transition-all duration-200 " + theme.SecondaryBackground + " " + theme.PrimaryBorder }>
-		<nav class="container mx-auto px-4 py-4 flex flex-col space-y-3">
+		<nav class="container mx-auto px-4 py-4 flex flex-col space-y-1">
 			<div onclick="document.getElementById('mobile-menu').classList.add('hidden')">
-				@NavItem("/events", "/static/icons/events.svg", language.Header.Events, theme)
+				@MobileNavItem("/events", "/static/icons/events.svg", language.Header.Events, theme)
 			</div>
 			<div onclick="document.getElementById('mobile-menu').classList.add('hidden')">
-				@NavItem("/about", "/static/icons/about.svg", language.Header.About, theme)
+				@MobileNavItem("/about", "/static/icons/about.svg", language.Header.About, theme)
 			</div>
 			<div onclick="document.getElementById('mobile-menu').classList.add('hidden')">
-				@NavItem("/members", "/static/icons/members.svg", language.Header.Members, theme)
+				@MobileNavItem("/members", "/static/icons/members.svg", language.Header.Members, theme)
 			</div>
 			<div onclick="document.getElementById('mobile-menu').classList.add('hidden')">
-				@NavItem("/contact", "/static/icons/contact.svg", language.Header.Contact, theme)
+				@MobileNavItem("/contact", "/static/icons/contact.svg", language.Header.Contact, theme)
 			</div>
 
 			<div class={ "pt-3 border-t flex items-center justify-between " + theme.PrimaryBorder }>

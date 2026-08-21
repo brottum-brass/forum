@@ -6,14 +6,14 @@ import (
 )
 
 templ SocialLink(href string, iconPath string, altText string, theme theme.Mode) {
-    <a href={ templ.SafeURL(href) } target="_blank" rel="noopener noreferrer" class="p-1.5 rounded-md hover:bg-amber-500/10 transition group">
+    <a href={ templ.SafeURL(href) } target="_blank" rel="noopener noreferrer" class={ "p-1.5 rounded-md transition group " + theme.HoverBackground }>
         <img src={ iconPath } alt={ altText } class={ "h-5 w-5 opacity-80 group-hover:opacity-100 " + theme.IconFilter }/>
     </a>
 }
 
 templ Footer(language language.Content, theme theme.Mode) {
     <footer class={ "border-t mt-auto transition-colors duration-200 relative " + theme.SecondaryBackground + " " + theme.PrimaryBorder }>
-        <div class="h-[3px] bg-gradient-to-r from-transparent via-amber-500/50 to-transparent w-full absolute top-0 left-0"></div>
+        <div class={ "h-[3px] bg-gradient-to-r from-transparent to-transparent w-full absolute top-0 left-0 " + theme.AccentGradient }></div>
 
         <div class="container mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
             <div class="flex items-center space-x-3">
