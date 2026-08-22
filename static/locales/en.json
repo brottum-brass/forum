@@ -13,5 +13,94 @@
     },
     "footer": {
         "copyright": "© 2026 Erlend Rømo"
+    },
+    "events": {
+        "page_title": "Events",
+        "swipe_hint": "Swipe or scroll horizontally to see all events",
+        "no_events": "No events found.",
+        "get_tickets": "Get Tickets",
+        "event_items": [
+            {
+                "id": 1,
+                "title": "Jubilee Concert",
+                "description": "A festive evening filled with a vibrant brass band repertoire, featuring solo performances from our principal cornetist.",
+                "in_association_with": "Brøttum Skolekorps",
+                "start_date": "2026-11-07T18:00:00Z",
+                "location": "Brøttum Skole, Ringsaker",
+                "ticket_link": "https://hoopla.no"
+            },
+            {
+                "id": 2,
+                "title": "Advent Concert",
+                "description": "We ring in the Advent season with atmospheric music in the church. Take a break from the pre-Christmas rush and join us.",
+                "start_date": "2026-11-29T17:00:00Z",
+                "location": "Brøttum Church"
+            },
+            {
+                "id": 3,
+                "title": "Christmas Concert",
+                "description": "A traditional Christmas concert for the whole family. Well-known and beloved Christmas carols performed in grand brass arrangements.",
+                "in_association_with": "Lillehammer Brass",
+                "start_date": "2026-12-15T19:00:00Z",
+                "end_date": "2026-12-15T21:00:00Z",
+                "location": "Maihaugsalen, Lillehammer",
+                "ticket_link": "https://hoopla.no"
+            },
+            {
+                "id": 4,
+                "title": "New Year's Concert",
+                "description": "Celebrate the new year with Viennese waltzes, marches, and sparkling music to warm up in the winter cold!",
+                "start_date": "2027-01-10T18:00:00Z",
+                "location": "Ringsaker Theatre",
+                "ticket_link": "https://hoopla.no"
+            },
+            {
+                "id": 5,
+                "title": "NM Brass 2027",
+                "description": "Norwegian Championship for brass bands. Come and support us as we compete against the best bands in the country!",
+                "start_date": "2027-02-04T09:00:00Z",
+                "end_date": "2027-02-05T22:00:00Z",
+                "location": "Grieghallen, Bergen",
+                "ticket_link": "https://hoopla.no"
+            },
+            {
+                "id": 6,
+                "title": "Innlandet Championship",
+                "description": "Regional championship for youth and amateur brass bands in Innlandet. We are fine-tuning our performance to compete for a podium finish.",
+                "start_date": "2027-03-12T10:00:00Z",
+                "location": "Hamar Kulturhus"
+            },
+            {
+                "id": 7,
+                "title": "Spring Concert",
+                "description": "Welcome to a light and playful spring concert featuring a varied program of film, pop, and musical theatre classics.",
+                "start_date": "2027-04-24T16:00:00Z",
+                "location": "Moelv Kulturhus",
+                "ticket_link": "https://hoopla.no"
+            },
+            {
+                "id": 8,
+                "title": "May 17th Parade Performance",
+                "description": "True to tradition, we will perform in the Constitution Day parade and host a mini-concert at the senior center. Happy Constitution Day!",
+                "start_date": "2027-05-17T08:00:00Z",
+                "end_date": "2027-05-17T14:00:00Z",
+                "location": "Brøttum Town Center"
+            },
+            {
+                "id": 9,
+                "title": "Summer Concert in the Park",
+                "description": "An outdoor concert to celebrate the start of summer vacation. Bring a picnic blanket, family, and friends!",
+                "in_association_with": "Ringsaker Janitsjar",
+                "start_date": "2027-06-12T14:00:00Z",
+                "location": "Sjusjøen"
+            },
+            {
+                "id": 10,
+                "title": "Autumn Festival & Seminar Showcase",
+                "description": "The finale to our major autumn music workshop. We will showcase everything we practiced over the weekend. Coffee and cakes sold during the interval.",
+                "start_date": "2027-09-25T15:00:00Z",
+                "location": "Brøttum Skole"
+            }
+        ]
     }
 }
