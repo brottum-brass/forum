@@ -6,14 +6,24 @@ import (
 )
 
 templ SocialLink(href string, iconPath string, altText string, theme theme.Mode) {
-    <a href={ templ.SafeURL(href) } target="_blank" rel="noopener noreferrer" class={ "p-1.5 rounded-md transition group " + theme.HoverBackground }>
-        <img src={ iconPath } alt={ altText } class={ "h-5 w-5 opacity-80 group-hover:opacity-100 " + theme.IconFilter }/>
+    <a 
+        href={ templ.SafeURL(href) } 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        aria-label={ altText }
+        class={ "p-2 rounded-lg transition-all duration-150 group flex items-center justify-center " + theme.HoverBackground }
+    >
+        <img 
+            src={ iconPath } 
+            alt={ altText } 
+            class={ "h-5 w-5 opacity-80 group-hover:opacity-100 transition-all duration-150 group-hover:scale-110 " + theme.IconFilter }
+        />
     </a>
 }
 
 templ Footer(language language.Content, theme theme.Mode) {
     <footer class={ "border-t mt-auto transition-colors duration-200 relative " + theme.SecondaryBackground + " " + theme.PrimaryBorder }>
-        <div class={ "h-[3px] bg-gradient-to-r from-transparent to-transparent w-full absolute top-0 left-0 " + theme.AccentGradient }></div>
+        <div class={ "h-[3px] w-full absolute top-0 left-0 bg-gradient-to-r " + theme.AccentGradient }></div>
 
         <div class="container mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
             <div class="flex items-center space-x-3">
@@ -23,12 +33,12 @@ templ Footer(language language.Content, theme theme.Mode) {
                 </span>
             </div>
 
-            <div class="flex items-center space-x-4">
+            <div class="flex items-center space-x-2">
                 @SocialLink("https://facebook.com/brottumbrass", "/static/icons/facebook.svg", "Facebook", theme)
                 @SocialLink("https://instagram.com/brottumbrass", "/static/icons/instagram.svg", "Instagram", theme)
             </div>
 
-            <p class={ "text-sm " + theme.SecondaryText }>
+            <p class={ "text-sm text-center md:text-right " + theme.SecondaryText }>
                 { language.Footer.Copyright }
             </p>
         </div>

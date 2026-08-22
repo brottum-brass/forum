@@ -1,84 +1,185 @@
 package html
 
 import (
-	"github.com/brottum-brass/forum/src/utils/language"
-	"github.com/brottum-brass/forum/src/utils/theme"
+    "github.com/brottum-brass/forum/src/utils/language"
+    "github.com/brottum-brass/forum/src/utils/theme"
 )
 
 templ DesktopNavItem(href string, iconPath string, label string, theme theme.Mode) {
-	<a 
-		href={ templ.SafeURL(href) } 
-		class={ "group flex items-center justify-center px-2 lg:px-3 py-2 lg:space-x-2 rounded-lg transition-all duration-150 whitespace-nowrap " + theme.HoverBackground + " " + theme.SecondaryText }
-	>
-		<img 
-			src={ iconPath } 
-			alt={ label } 
-			class={ "h-5 w-5 transition-transform duration-150 group-hover:scale-110 " + theme.IconFilter }
-		/>
-		<span class={ "hidden lg:inline transition-colors duration-150 " + theme.AccentGroupHoverText }>
-			{ label }
-		</span>
-	</a>
+    <a 
+        href={ href }
+        hx-get={ href }
+        hx-target="#main-content"
+        hx-swap="innerHTML"
+        hx-push-url="true"
+        class={ "group flex items-center justify-center px-2 lg:px-3 py-2 lg:space-x-2 rounded-lg transition-all duration-150 whitespace-nowrap " + theme.HoverBackground }
+    >
+        <img 
+            src={ iconPath } 
+            alt={ label } 
+            class={ "h-5 w-5 transition-transform duration-150 group-hover:scale-110 " + theme.IconFilter }
+        />
+        <span class={ "hidden lg:inline transition-colors duration-150 " + theme.SecondaryText + " " + theme.AccentGroupHoverText }>
+            { label }
+        </span>
+    </a>
 }
 
 templ MobileNavItem(href string, iconPath string, label string, theme theme.Mode) {
-	<a 
-		href={ templ.SafeURL(href) } 
-		class={ "group flex items-center space-x-3 px-3 py-2.5 rounded-lg transition-all duration-150 " + theme.HoverBackground + " " + theme.PrimaryText }
-	>
-		<img 
-			src={ iconPath } 
-			alt={ label } 
-			class={ "h-5 w-5 transition-transform duration-150 group-hover:scale-110 " + theme.IconFilter }
-		/>
-		<span class={ "font-medium transition-colors duration-150 " + theme.AccentGroupHoverText }>
-			{ label }
-		</span>
-	</a>
+    <a 
+        href={ href }
+        hx-get={ href }
+        hx-target="#main-content"
+        hx-swap="innerHTML"
+        hx-push-url="true"
+        onclick="closeMobileMenu()"
+        class={ "group flex items-center space-x-3 px-3 py-2.5 rounded-lg transition-all duration-150 " + theme.HoverBackground }
+    >
+        <img 
+            src={ iconPath } 
+            alt={ label } 
+            class={ "h-5 w-5 transition-transform duration-150 group-hover:scale-110 " + theme.IconFilter }
+        />
+        <span class={ "font-medium transition-colors duration-150 " + theme.PrimaryText + " " + theme.AccentGroupHoverText }>
+            { label }
+        </span>
+    </a>
 }
 
 templ DesktopNav(language language.Content, theme theme.Mode) {
-	<nav class="hidden md:block">
-		<ul class="flex flex-row items-center space-x-1 lg:space-x-2">
-			<li>@DesktopNavItem("/events", "/static/icons/events.svg", language.Header.Events, theme)</li>
-			<li>@DesktopNavItem("/about", "/static/icons/about.svg", language.Header.About, theme)</li>
-			<li>@DesktopNavItem("/members", "/static/icons/members.svg", language.Header.Members, theme)</li>
-			<li>@DesktopNavItem("/contact", "/static/icons/contact.svg", language.Header.Contact, theme)</li>
-		</ul>
-	</nav>
-}
-
-templ HamburgerButton(theme theme.Mode) {
-	<button 
-		type="button"
-		aria-label="Toggle Navigation Menu"
-		onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
-		class={ "p-2 rounded-lg transition focus:outline-none border border-transparent md:hidden " + theme.HoverBackground + " " + theme.HoverBorder + " " + theme.SecondaryText }
-	>
-		<img src="/static/icons/menu-burger.svg" alt="Menu" class={ "h-6 w-6 " + theme.IconFilter }/>
-	</button>
+    <nav class="hidden md:block">
+        <ul class="flex flex-row items-center space-x-1 lg:space-x-2">
+            <li>@DesktopNavItem("/events", "/static/icons/events.svg", language.Header.Events, theme)</li>
+            <li>@DesktopNavItem("/about", "/static/icons/about.svg", language.Header.About, theme)</li>
+            <li>@DesktopNavItem("/members", "/static/icons/members.svg", language.Header.Members, theme)</li>
+            <li>@DesktopNavItem("/contact", "/static/icons/contact.svg", language.Header.Contact, theme)</li>
+        </ul>
+    </nav>
 }
 
 templ MobileNav(language language.Content, theme theme.Mode) {
-	<div id="mobile-menu" class={ "hidden md:hidden border-t transition-all duration-200 " + theme.SecondaryBackground + " " + theme.PrimaryBorder }>
-		<nav class="container mx-auto px-4 py-4 flex flex-col space-y-1">
-			<div onclick="document.getElementById('mobile-menu').classList.add('hidden')">
-				@MobileNavItem("/events", "/static/icons/events.svg", language.Header.Events, theme)
-			</div>
-			<div onclick="document.getElementById('mobile-menu').classList.add('hidden')">
-				@MobileNavItem("/about", "/static/icons/about.svg", language.Header.About, theme)
-			</div>
-			<div onclick="document.getElementById('mobile-menu').classList.add('hidden')">
-				@MobileNavItem("/members", "/static/icons/members.svg", language.Header.Members, theme)
-			</div>
-			<div onclick="document.getElementById('mobile-menu').classList.add('hidden')">
-				@MobileNavItem("/contact", "/static/icons/contact.svg", language.Header.Contact, theme)
-			</div>
+    <div 
+        id="mobile-menu" 
+        style="max-height: 0px; opacity: 0; pointer-events: none;"
+        class={ "md:hidden absolute left-0 right-0 top-full z-50 border-b shadow-2xl backdrop-blur-md overflow-hidden transition-all duration-300 ease-in-out " + theme.PrimaryBackground + " " + theme.PrimaryBorder }
+    >
+        <nav 
+            id="mobile-nav-content"
+            style="opacity: 0; transform: translateY(-10px);"
+            class="container mx-auto px-4 py-4 flex flex-col space-y-1 transition-all duration-200 ease-out"
+        >
+            @MobileNavItem("/events", "/static/icons/events.svg", language.Header.Events, theme)
+            @MobileNavItem("/about", "/static/icons/about.svg", language.Header.About, theme)
+            @MobileNavItem("/members", "/static/icons/members.svg", language.Header.Members, theme)
+            @MobileNavItem("/contact", "/static/icons/contact.svg", language.Header.Contact, theme)
 
-			<div class={ "pt-3 border-t flex items-center justify-between " + theme.PrimaryBorder }>
-				<span class={ "text-sm font-medium " + theme.SecondaryText }>Language</span>
-				@LanguageSelect(language, theme)
-			</div>
-		</nav>
-	</div>
+            <div class={ "pt-3 border-t flex items-center justify-between " + theme.PrimaryBorder }>
+                <span class={ "text-sm font-medium " + theme.SecondaryText }>Language</span>
+                @LanguageSelect(language, theme)
+            </div>
+        </nav>
+    </div>
+}
+
+templ HamburgerButton(theme theme.Mode) {
+    <button 
+        type="button"
+        id="menu-btn"
+        aria-label="Toggle Navigation Menu"
+        onclick="toggleMobileMenu()"
+        class={ "group relative flex items-center justify-center px-2 py-2 rounded-lg transition-all duration-150 focus:outline-none border border-transparent md:hidden " + theme.HoverBackground + " " + theme.HoverBorder + " " + theme.SecondaryText }
+    >
+        <div class="h-5 w-5 opacity-0"></div>
+
+        <img 
+            id="icon-burger"
+            src="/static/icons/menu-burger.svg" 
+            alt="Open Menu" 
+            style="opacity: 1; transform: rotate(0deg) scale(1);"
+            class={ "absolute h-5 w-5 transition-all duration-300 " + theme.IconFilter }
+        />
+        <img 
+            id="icon-close"
+            src="/static/icons/cross.svg" 
+            alt="Close Menu" 
+            style="opacity: 0; transform: rotate(-90deg) scale(0.5);"
+            class={ "absolute h-5 w-5 transition-all duration-300 " + theme.IconFilter }
+        />
+    </button>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (!menu) return;
+
+            const isOpen = menu.style.maxHeight !== '0px' && menu.style.maxHeight !== '';
+
+            if (isOpen) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        }
+
+        function openMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const content = document.getElementById('mobile-nav-content');
+            if (!menu) return;
+
+            menu.style.maxHeight = menu.scrollHeight + 'px';
+            menu.style.opacity = '1';
+            menu.style.pointerEvents = 'auto';
+
+            if (content) {
+                setTimeout(() => {
+                    content.style.opacity = '1';
+                    content.style.transform = 'translateY(0px)';
+                }, 75);
+            }
+
+            setMenuState(true);
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const content = document.getElementById('mobile-nav-content');
+            if (!menu) return;
+
+            if (content) {
+                content.style.opacity = '0';
+                content.style.transform = 'translateY(-10px)';
+            }
+
+            menu.style.maxHeight = '0px';
+            menu.style.opacity = '0';
+            menu.style.pointerEvents = 'none';
+
+            setMenuState(false);
+        }
+
+        function setMenuState(isOpen) {
+            const burger = document.getElementById('icon-burger');
+            const close = document.getElementById('icon-close');
+
+            if (!burger || !close) return;
+
+            if (isOpen) {
+                burger.style.opacity = '0';
+                burger.style.transform = 'rotate(90deg) scale(0.5)';
+
+                close.style.opacity = '1';
+                close.style.transform = 'rotate(0deg) scale(1)';
+            } else {
+                burger.style.opacity = '1';
+                burger.style.transform = 'rotate(0deg) scale(1)';
+
+                close.style.opacity = '0';
+                close.style.transform = 'rotate(-90deg) scale(0.5)';
+            }
+        }
+
+        document.body.addEventListener('htmx:afterSwap', function() {
+            closeMobileMenu();
+        });
+    </script>
 }

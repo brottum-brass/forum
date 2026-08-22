@@ -12,12 +12,12 @@ templ ThemeToggle(theme theme.Mode) {
         hx-swap="outerHTML transition:true"
         type="button" 
         aria-label="Toggle Theme"
-        class={ "p-2 rounded-lg transition focus:outline-none border border-transparent " + theme.HoverBackground + " " + theme.AccentHoverText + " " + theme.HoverBorder + " " + theme.SecondaryText }
+        class={ "flex items-center justify-center px-2 lg:px-3 py-2 rounded-lg transition-all duration-150 focus:outline-none border border-transparent " + theme.HoverBackground + " " + theme.AccentHoverText + " " + theme.HoverBorder + " " + theme.SecondaryText }
     >
         if theme.Name == "darkmode" {
-            <img src="/static/icons/sun.svg" alt="Light Mode" class={ "h-5 w-5 " + theme.IconFilter }/>
+            <img src="/static/icons/sun.svg" alt="Light Mode" class={ "h-5 w-5 transition-transform duration-150 hover:scale-110 " + theme.IconFilter }/>
         } else {
-            <img src="/static/icons/moon.svg" alt="Dark Mode" class={ "h-5 w-5 " + theme.IconFilter }/>
+            <img src="/static/icons/moon.svg" alt="Dark Mode" class={ "h-5 w-5 transition-transform duration-150 hover:scale-110 " + theme.IconFilter }/>
         }
     </button>
 }
@@ -29,9 +29,21 @@ templ LanguageSelect(language language.Content, theme theme.Mode) {
         hx-target="#app-root"
         hx-swap="outerHTML transition:true"
         hx-trigger="change"
-        class={ "text-sm rounded-lg p-2 font-medium border focus:ring-2 focus:outline-none transition cursor-pointer " + theme.HoverBorder + " " + theme.AccentFocusRing + " " + theme.SecondaryBackground + " " + theme.PrimaryBorder + " " + theme.PrimaryText }
+        class={ "text-sm rounded-lg px-2 lg:px-3 py-2 font-medium border focus:ring-2 focus:outline-none transition cursor-pointer " + theme.HoverBorder + " " + theme.AccentFocusRing + " " + theme.SecondaryBackground + " " + theme.PrimaryBorder + " " + theme.PrimaryText }
     >
-        <option value="en" selected?={ language.Common.Language == "en" }>EN</option>
-        <option value="no" selected?={ language.Common.Language == "no" }>NO</option>
+        <option 
+            value="en" 
+            selected?={ language.Common.Language == "en" }
+            class={ theme.PrimaryBackground + " " + theme.PrimaryText }
+        >
+            EN
+        </option>
+        <option 
+            value="no" 
+            selected?={ language.Common.Language == "no" }
+            class={ theme.PrimaryBackground + " " + theme.PrimaryText }
+        >
+            NO
+        </option>
     </select>
 }

@@ -9,7 +9,7 @@ templ Document(language language.Content, theme theme.Mode, content templ.Compon
     <!DOCTYPE html>
     <html lang={ language.Common.Language }>
         @Head(language.Common.Title)
-        <body class="min-h-screen flex flex-col">
+        <body class={ "min-h-screen flex flex-col transition-colors duration-200 " + theme.PrimaryBackground }>
             @Body(language, theme, content)
         </body>
     </html>
@@ -31,7 +31,7 @@ templ Body(language language.Content, theme theme.Mode, content templ.Component)
     <div id="app-root" class={ "min-h-screen flex flex-col w-full transition-colors duration-200 " + theme.PrimaryBackground + " " + theme.PrimaryText }>
         @Header(language, theme)
         
-        <main class="flex-grow container mx-auto px-4 py-6">
+        <main id="main-content" class="flex-grow container mx-auto px-4 py-6">
             @content
         </main>
 

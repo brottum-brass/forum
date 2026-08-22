@@ -4,11 +4,22 @@ import (
     "github.com/brottum-brass/forum/src/utils/theme"
 )
 
-templ BrandLogo(name string, theme theme.Mode) {
-    <a href="/" class="flex items-center space-x-2 group">
-        <img src="/static/icons/logo_transparent.png" alt="Logo" class="h-8 w-auto group-hover:scale-105 transition-transform"/>
-        <span class={ "text-xl font-bold transition " + theme.AccentHoverText + " " + theme.PrimaryText }>
-            { name }
+templ BrandLogo(href string, iconpath string, label string, theme theme.Mode) {
+    <a 
+        href={ href }
+        hx-get={ href }
+        hx-target="#main-content"
+        hx-swap="innerHTML"
+        hx-push-url="true"
+        class={ "group flex items-center space-x-2 px-2 lg:px-3 py-2 rounded-lg transition-all duration-150 " + theme.HoverBackground }
+    >
+        <img 
+            src={ iconpath } 
+            alt={ label } 
+            class="h-8 w-auto transition-transform duration-150 group-hover:scale-105"
+        />
+        <span class={ "text-xl font-bold transition-colors duration-150 " + theme.PrimaryText + " " + theme.AccentGroupHoverText }>
+            { label }
         </span>
     </a>
 }

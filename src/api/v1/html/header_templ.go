@@ -34,7 +34,7 @@ func Header(language language.Content, theme theme.Mode) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		var templ_7745c5c3_Var2 = []any{"border-b sticky top-0 z-50 transition-colors duration-200 shadow-sm " + theme.SecondaryBackground + " " + theme.PrimaryBorder}
+		var templ_7745c5c3_Var2 = []any{"border-b sticky top-0 z-50 backdrop-blur-md transition-colors duration-200 shadow-sm " + theme.PrimaryBackground + " " + theme.PrimaryBorder}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -56,7 +56,7 @@ func Header(language language.Content, theme theme.Mode) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = BrandLogo(language.Common.Name, theme).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = BrandLogo("/", "/static/icons/logo_transparent.png", language.Header.Home, theme).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
