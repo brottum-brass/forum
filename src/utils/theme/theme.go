@@ -18,6 +18,11 @@ type Mode struct {
 	HoverBackground      string `json:"hover_background"`
 	HoverBorder          string `json:"hover_border"`
 	IconFilter           string `json:"icon_filter"`
+	AccentBackground     string `json:"accent_background"`
+	AccentBorder         string `json:"accent_border"`
+	ButtonBackground     string `json:"button_background"`
+	ButtonText           string `json:"button_text"`
+	ActiveRing           string `json:"active_ring"`
 }
 
 type Theme interface {

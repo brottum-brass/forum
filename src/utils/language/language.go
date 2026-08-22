@@ -1,6 +1,10 @@
 package language
 
-import "context"
+import (
+	"context"
+
+	"github.com/brottum-brass/forum/src/models"
+)
 
 type Content struct {
 	Common struct {
@@ -18,6 +22,13 @@ type Content struct {
 	Footer struct {
 		Copyright string `json:"copyright"`
 	} `json:"footer"`
+	Events struct {
+		PageTitle  string             `json:"page_title"`
+		SwipeHint  string             `json:"swipe_hint"`
+		NoEvents   string             `json:"no_events"`
+		GetTickets string             `json:"get_tickets"`
+		EventItems []models.EventItem `json:"event_items"`
+	} `json:"events"`
 }
 
 type Language interface {
