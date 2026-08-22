@@ -1,0 +1,233 @@
+package html
+
+import (
+    "fmt"
+    "github.com/brottum-brass/forum/src/models"
+    "github.com/brottum-brass/forum/src/utils/language"
+    "github.com/brottum-brass/forum/src/utils/theme"
+)
+
+func FormatEventDateRange(event models.EventItem) string {
+    if !event.EndDate.IsZero() && event.EndDate.Day() != event.StartDate.Day() {
+        return event.FormattedStartDate() + " - " + event.FormattedEndDate()
+    }
+    return event.FormattedStartDate()
+}
+
+templ EventBadge(event models.EventItem, theme theme.Mode) {
+    <div class="flex items-center justify-between gap-2">
+        <div class={ "inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border " + theme.AccentBackground + " " + theme.AccentBorder }>
+            <span class={ "text-xs font-extrabold uppercase tracking-wide " + theme.AccentText }>
+                { FormatEventDateRange(event) }
+            </span>
+            <span class={ "text-xs font-semibold opacity-70 " + theme.AccentText }>
+                • { event.FormattedTime() }
+            </span>
+        </div>
+    </div>
+}
+
+templ EventDetails(event models.EventItem, theme theme.Mode) {
+    <div class={ "pt-3 space-y-2 border-t " + theme.PrimaryBorder }>
+        <div class={ "flex items-center gap-2 text-xs font-medium " + theme.SecondaryText }>
+            <div class={ "p-1 rounded-md shrink-0 " + theme.AccentBackground + " " + theme.AccentText }>
+                <img src="/static/icons/location.svg" alt="Location" class={ "w-3.5 h-3.5 " + theme.IconFilter }/>
+            </div>
+            <span class="truncate">{ event.Location }</span>
+        </div>
+
+        if event.InAssociationWith != "" {
+            <div class={ "flex items-center gap-2 text-xs font-medium " + theme.SecondaryText }>
+                <div class={ "p-1 rounded-md shrink-0 " + theme.AccentBackground + " " + theme.AccentText }>
+                    <img src="/static/icons/members.svg" alt="Association" class={ "w-3.5 h-3.5 " + theme.IconFilter }/>
+                </div>
+                <span class="truncate">with { event.InAssociationWith }</span>
+            </div>
+        }
+    </div>
+}
+
+templ EventTicketButton(ticketLink string, label string, theme theme.Mode) {
+    <div>
+        if ticketLink != "" {
+            <a 
+                href={ templ.SafeURL(ticketLink) } 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class={ "flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl font-extrabold text-sm transition-all duration-200 hover:brightness-105 active:scale-[0.98] shadow-md " + theme.ButtonBackground + " " + theme.ButtonText }
+            >
+                <span>{ label }</span>
+                <img src="/static/icons/arrow-right.svg" alt="" class="w-4 h-4"/>
+            </a>
+        } else {
+            <div class={ "w-full text-center py-2.5 px-4 rounded-xl text-xs font-semibold opacity-60 " + theme.SecondaryBackground + " " + theme.SecondaryText }>
+                Free Entrance
+            </div>
+        }
+    </div>
+}
+
+templ CarouselNavControls(theme theme.Mode) {
+    <button 
+        id="scroll-left"
+        type="button"
+        aria-label="Scroll left"
+        class={ "hidden sm:flex absolute left-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-full border shadow-lg transition-all duration-200 hover:scale-110 active:scale-95 backdrop-blur-md " + theme.SecondaryBackground + " " + theme.PrimaryBorder + " " + theme.PrimaryText + " " + theme.HoverBackground + " " + theme.HoverBorder }
+    >
+        <img src="/static/icons/previous.svg" alt="Previous" class={ "w-6 h-6 " + theme.IconFilter }/>
+    </button>
+
+    <button 
+        id="scroll-right"
+        type="button"
+        aria-label="Scroll right"
+        class={ "hidden sm:flex absolute right-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-full border shadow-lg transition-all duration-200 hover:scale-110 active:scale-95 backdrop-blur-md " + theme.SecondaryBackground + " " + theme.PrimaryBorder + " " + theme.PrimaryText + " " + theme.HoverBackground + " " + theme.HoverBorder }
+    >
+        <img src="/static/icons/next.svg" alt="Next" class={ "w-6 h-6 " + theme.IconFilter }/>
+    </button>
+}
+
+templ EventCard(event models.EventItem, index int, lang language.Content, theme theme.Mode) {
+    <div id={ fmt.Sprintf("event-card-%d", index) } class="event-card-wrapper snap-center shrink-0 w-[82vw] max-w-[340px] sm:max-w-[400px] py-6 scroll-mt-6">
+        <div class={ "event-card rounded-3xl p-6 sm:p-7 border flex flex-col justify-between min-h-[420px] transition-all duration-300 transform " + theme.SecondaryBackground + " " + theme.PrimaryBorder }>
+            <div class="space-y-4">
+                @EventBadge(event, theme)
+
+                <div class="space-y-2.5">
+                    <h2 class={ "text-2xl font-bold tracking-tight leading-snug " + theme.PrimaryText }>
+                        { event.Title }
+                    </h2>
+                    <p class={ "text-sm leading-relaxed font-normal opacity-90 " + theme.SecondaryText }>
+                        { event.Description }
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-4 space-y-4">
+                @EventDetails(event, theme)
+                @EventTicketButton(event.TicketLink, lang.Events.GetTickets, theme)
+            </div>
+        </div>
+    </div>
+}
+
+templ EventsView(events []models.EventItem, lang language.Content, theme theme.Mode) {
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <div class="mb-6 text-center sm:text-left">
+            <h1 class={ "text-3xl font-extrabold tracking-tight mb-1 " + theme.PrimaryText }>
+                { lang.Events.PageTitle }
+            </h1>
+            <p class={ "text-xs uppercase tracking-wider font-semibold " + theme.SecondaryText }>
+                { lang.Events.SwipeHint }
+            </p>
+        </div>
+
+        if len(events) == 0 {
+            <div class={ "text-center py-12 rounded-xl border border-dashed " + theme.PrimaryBorder }>
+                <p class={ "text-base font-medium " + theme.SecondaryText }>
+                    { lang.Events.NoEvents }
+                </p>
+            </div>
+        } else {
+            <div class="relative group">
+                @CarouselNavControls(theme)
+
+                <div 
+                    id="events-carousel"
+                    class="flex items-center gap-3 sm:gap-6 overflow-x-auto snap-x snap-mandatory py-4 scrollbar-none scroll-smooth px-[5vw] sm:px-[calc(50%-200px)]"
+                >
+                    for index, event := range events {
+                        @EventCard(event, index, lang, theme)
+                    }
+                </div>
+            </div>
+        }
+    </div>
+
+    @CarouselScript()
+}
+
+templ CarouselScript() {
+    <script>
+        function initEventsCarousel() {
+            const container = document.getElementById('events-carousel');
+            if (!container || container.dataset.carouselInitialized === "true") return;
+
+            container.dataset.carouselInitialized = "true";
+
+            const leftBtn = document.getElementById('scroll-left');
+            const rightBtn = document.getElementById('scroll-right');
+            const wrappers = container.querySelectorAll('.event-card-wrapper');
+
+            const getStep = () => {
+                const first = wrappers[0];
+                return first ? first.offsetWidth : 320;
+            };
+
+            if (leftBtn) {
+                leftBtn.addEventListener('click', () => {
+                    container.scrollBy({ left: -getStep(), behavior: 'smooth' });
+                });
+            }
+
+            if (rightBtn) {
+                rightBtn.addEventListener('click', () => {
+                    container.scrollBy({ left: getStep(), behavior: 'smooth' });
+                });
+            }
+
+            const activeClasses = ['opacity-100', 'scale-100', 'ring-2', 'ring-amber-400', 'shadow-2xl', 'z-10'];
+            const inactiveClasses = ['opacity-40', 'scale-90'];
+
+            const updateActiveCard = () => {
+                const containerCenter = container.getBoundingClientRect().left + container.offsetWidth / 2;
+                let closestWrapper = null;
+                let minDistance = Infinity;
+
+                wrappers.forEach(wrapper => {
+                    const rect = wrapper.getBoundingClientRect();
+                    const wrapperCenter = rect.left + rect.width / 2;
+                    const distance = Math.abs(containerCenter - wrapperCenter);
+
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        closestWrapper = wrapper;
+                    }
+                });
+
+                wrappers.forEach(wrapper => {
+                    const card = wrapper.querySelector('.event-card');
+                    if (!card) return;
+
+                    if (wrapper === closestWrapper) {
+                        card.classList.remove(...inactiveClasses);
+                        card.classList.add(...activeClasses);
+                    } else {
+                        card.classList.remove(...activeClasses);
+                        card.classList.add(...inactiveClasses);
+                    }
+                });
+            };
+
+            let ticking = false;
+            container.addEventListener('scroll', () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        updateActiveCard();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+
+            window.addEventListener('resize', updateActiveCard);
+            updateActiveCard();
+        }
+
+        if (typeof htmx !== 'undefined') {
+            htmx.onLoad(() => initEventsCarousel());
+        } else {
+            document.addEventListener('DOMContentLoaded', () => initEventsCarousel());
+        }
+    </script>
+}
