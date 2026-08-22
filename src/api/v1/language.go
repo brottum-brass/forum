@@ -11,7 +11,8 @@ import (
 
 func LanguageHandler() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		currentPrefs := middleware.GetPreference(r)
+		preference := middleware.GetPreference(r)
+		appCtx := utils.GetAppContext()
 
 		newLanguage := r.URL.Query().Get("language")
 		if newLanguage == "" {
@@ -26,16 +27,18 @@ func LanguageHandler() http.HandlerFunc {
 			SameSite: http.SameSiteLaxMode,
 		})
 
-		updatedRequest := middleware.SetPreference(r, newLanguage, currentPrefs.Theme)
+		updatedRequest := middleware.SetPreference(r, newLanguage, preference.Theme)
 
-		languageContent := utils.GetAppContext().Language.L(updatedRequest.Context(), newLanguage)
-		themeMode := utils.GetAppContext().Theme.T(updatedRequest.Context(), currentPrefs.Theme)
+		languageContent := appCtx.Language.L(updatedRequest.Context(), newLanguage)
+		themeMode := appCtx.Theme.T(updatedRequest.Context(), preference.Theme)
+
+		pageContent := renderCurrentPageContent(r, languageContent, themeMode)
 
 		if updatedRequest.Header.Get("HX-Request") == "true" {
-			html.Body(languageContent, themeMode, html.HomeContent(languageContent, themeMode)).Render(updatedRequest.Context(), w)
+			html.Body(languageContent, themeMode, pageContent).Render(updatedRequest.Context(), w)
 			return
 		}
 
-		html.Document(languageContent, themeMode, html.HomeContent(languageContent, themeMode)).Render(updatedRequest.Context(), w)
+		html.Document(languageContent, themeMode, pageContent).Render(updatedRequest.Context(), w)
 	}
 }

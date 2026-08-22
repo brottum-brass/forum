@@ -8,19 +8,19 @@ import (
 	"github.com/brottum-brass/forum/src/utils"
 )
 
-func HomeHandler() http.HandlerFunc {
+func HandleEvents() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		preference := middleware.GetPreference(r)
 		appCtx := utils.GetAppContext()
 
 		languageContent := appCtx.Language.L(r.Context(), preference.Language)
-		themeMode := appCtx.Theme.T(r.Context(), preference.Theme)
+		theme := appCtx.Theme.T(r.Context(), preference.Theme)
 
 		if r.Header.Get("HX-Request") == "true" {
-			html.HomeContent(languageContent, themeMode).Render(r.Context(), w)
+			html.EventsView(languageContent.Events.EventItems, languageContent, theme).Render(r.Context(), w)
 			return
 		}
 
-		html.Document(languageContent, themeMode, html.HomeContent(languageContent, themeMode)).Render(r.Context(), w)
+		html.Document(languageContent, theme, html.EventsView(languageContent.Events.EventItems, languageContent, theme)).Render(r.Context(), w)
 	}
 }

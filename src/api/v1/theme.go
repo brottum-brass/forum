@@ -11,10 +11,11 @@ import (
 
 func ThemeHandler() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		currentPrefs := middleware.GetPreference(r)
+		preference := middleware.GetPreference(r)
+		appCtx := utils.GetAppContext()
 
 		newTheme := "darkmode"
-		if currentPrefs.Theme == "darkmode" {
+		if preference.Theme == "darkmode" {
 			newTheme = "lightmode"
 		}
 
@@ -26,16 +27,18 @@ func ThemeHandler() http.HandlerFunc {
 			SameSite: http.SameSiteLaxMode,
 		})
 
-		updatedRequest := middleware.SetPreference(r, currentPrefs.Language, newTheme)
+		updatedRequest := middleware.SetPreference(r, preference.Language, newTheme)
 
-		languageContent := utils.GetAppContext().Language.L(updatedRequest.Context(), currentPrefs.Language)
-		themeMode := utils.GetAppContext().Theme.T(updatedRequest.Context(), newTheme)
+		languageContent := appCtx.Language.L(updatedRequest.Context(), preference.Language)
+		themeMode := appCtx.Theme.T(updatedRequest.Context(), newTheme)
 
-		if r.Header.Get("HX-Request") == "true" {
-			html.Body(languageContent, themeMode, html.HomeContent(languageContent, themeMode)).Render(updatedRequest.Context(), w)
+		pageContent := renderCurrentPageContent(r, languageContent, themeMode)
+
+		if updatedRequest.Header.Get("HX-Request") == "true" {
+			html.Body(languageContent, themeMode, pageContent).Render(updatedRequest.Context(), w)
 			return
 		}
 
-		html.Document(languageContent, themeMode, html.HomeContent(languageContent, themeMode)).Render(updatedRequest.Context(), w)
+		html.Document(languageContent, themeMode, pageContent).Render(updatedRequest.Context(), w)
 	}
 }
