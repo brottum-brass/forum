@@ -123,7 +123,7 @@ func Head(title string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</title><link rel=\"icon\" href=\"/static/icons/logo_transparent.png\" type=\"image/png\"><script src=\"https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js\" integrity=\"sha384-H5SrcfygHmAuTDZphMHqBJLc3FhssKjG7w/CeCpFReSfwBWDTKpkzPP8c+cLsK+V\" crossorigin=\"anonymous\"></script><link rel=\"stylesheet\" href=\"/static/css/output.css\"></head>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</title><link rel=\"icon\" href=\"/static/icons/logo_transparent.png\" type=\"image/png\"><script src=\"https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js\" integrity=\"sha384-H5SrcfygHmAuTDZphMHqBJLc3FhssKjG7w/CeCpFReSfwBWDTKpkzPP8c+cLsK+V\" crossorigin=\"anonymous\"></script><script src=\"/static/js/events-carousel.js\" defer></script><script src=\"/static/js/mobile-menu.js\" defer></script><link rel=\"stylesheet\" href=\"/static/css/output.css\"></head>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -908,39 +908,6 @@ func EventsView(events []models.EventItem, lang language.Content, theme theme.Mo
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = CarouselScript().Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		return nil
-	})
-}
-
-func CarouselScript() templ.Component {
-	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
-		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
-		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
-			return templ_7745c5c3_CtxErr
-		}
-		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
-		if !templ_7745c5c3_IsBuffer {
-			defer func() {
-				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
-				if templ_7745c5c3_Err == nil {
-					templ_7745c5c3_Err = templ_7745c5c3_BufErr
-				}
-			}()
-		}
-		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var65 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var65 == nil {
-			templ_7745c5c3_Var65 = templ.NopComponent
-		}
-		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 71, "<script>\n        function initEventsCarousel() {\n            const container = document.getElementById('events-carousel');\n            if (!container || container.dataset.carouselInitialized === \"true\") return;\n\n            container.dataset.carouselInitialized = \"true\";\n\n            const leftBtn = document.getElementById('scroll-left');\n            const rightBtn = document.getElementById('scroll-right');\n            const wrappers = container.querySelectorAll('.event-card-wrapper');\n\n            const getStep = () => {\n                const first = wrappers[0];\n                return first ? first.offsetWidth : 320;\n            };\n\n            if (leftBtn) {\n                leftBtn.addEventListener('click', () => {\n                    container.scrollBy({ left: -getStep(), behavior: 'smooth' });\n                });\n            }\n\n            if (rightBtn) {\n                rightBtn.addEventListener('click', () => {\n                    container.scrollBy({ left: getStep(), behavior: 'smooth' });\n                });\n            }\n\n            const activeClasses = ['opacity-100', 'scale-100', 'ring-2', 'ring-amber-400', 'shadow-2xl', 'z-10'];\n            const inactiveClasses = ['opacity-40', 'scale-90'];\n\n            const updateActiveCard = () => {\n                const containerCenter = container.getBoundingClientRect().left + container.offsetWidth / 2;\n                let closestWrapper = null;\n                let minDistance = Infinity;\n\n                wrappers.forEach(wrapper => {\n                    const rect = wrapper.getBoundingClientRect();\n                    const wrapperCenter = rect.left + rect.width / 2;\n                    const distance = Math.abs(containerCenter - wrapperCenter);\n\n                    if (distance < minDistance) {\n                        minDistance = distance;\n                        closestWrapper = wrapper;\n                    }\n                });\n\n                wrappers.forEach(wrapper => {\n                    const card = wrapper.querySelector('.event-card');\n                    if (!card) return;\n\n                    if (wrapper === closestWrapper) {\n                        card.classList.remove(...inactiveClasses);\n                        card.classList.add(...activeClasses);\n                    } else {\n                        card.classList.remove(...activeClasses);\n                        card.classList.add(...inactiveClasses);\n                    }\n                });\n            };\n\n            let ticking = false;\n            container.addEventListener('scroll', () => {\n                if (!ticking) {\n                    window.requestAnimationFrame(() => {\n                        updateActiveCard();\n                        ticking = false;\n                    });\n                    ticking = true;\n                }\n            });\n\n            window.addEventListener('resize', updateActiveCard);\n            updateActiveCard();\n        }\n\n        if (typeof htmx !== 'undefined') {\n            htmx.onLoad(() => initEventsCarousel());\n        } else {\n            document.addEventListener('DOMContentLoaded', () => initEventsCarousel());\n        }\n    </script>")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
 		return nil
 	})
 }
