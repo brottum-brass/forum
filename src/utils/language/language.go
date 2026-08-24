@@ -28,8 +28,52 @@ type Content struct {
 	Footer struct {
 		Copyright string `json:"copyright"`
 	} `json:"footer"`
-	Events  Events  `json:"events"`
-	Members Members `json:"members"`
+	Events   Events  `json:"events"`
+	About    About   `json:"about"`
+	Members  Members `json:"members"`
+	NotFound struct {
+		Title    string `json:"title"`
+		Message  string `json:"message"`
+		HomeLink string `json:"home_link"`
+	} `json:"not_found"`
+}
+
+type About struct {
+	PageTitle string `json:"page_title"`
+	Subtitle  string `json:"subtitle"`
+	Stats     struct {
+		EstablishedLabel string `json:"established_label"`
+		EstablishedYear  string `json:"established_year"`
+		MembersLabel     string `json:"members_label"`
+		MembersCount     string `json:"members_count"`
+		DivisionLabel    string `json:"division_label"`
+		DivisionName     string `json:"division_name"`
+		LocationLabel    string `json:"location_label"`
+		Location         string `json:"location"`
+	} `json:"stats"`
+	History struct {
+		Title   string `json:"title"`
+		Content string `json:"content"`
+	} `json:"history"`
+	Mission struct {
+		Title   string `json:"title"`
+		Content string `json:"content"`
+	} `json:"mission"`
+	Conductor struct {
+		TitleSingular  string                 `json:"title_singular"`
+		TitlePlural    string                 `json:"title_plural"`
+		VisionLabel    string                 `json:"vision_label"`
+		ConductorItems []models.ConductorItem `json:"conductor_items"`
+	} `json:"conductor"`
+	Competition struct {
+		Title                  string                         `json:"title"`
+		YearLabel              string                         `json:"year_label"`
+		EventLabel             string                         `json:"event_label"`
+		PieceLabel             string                         `json:"piece_label"`
+		ConductorLabel         string                         `json:"conductor_label"`
+		PositionLabel          string                         `json:"position_label"`
+		CompetitionResultItems []models.CompetitionResultItem `json:"competition_result_items"`
+	} `json:"competition"`
 }
 
 type Events struct {
