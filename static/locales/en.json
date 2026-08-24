@@ -102,5 +102,39 @@
                 "location": "Brøttum Skole"
             }
         ]
+    },
+    "members": {
+        "page_title": "Members",
+        "subtitle": "Meet the talented musicians of Brøttum Brass. Our members are the heart and soul of our band, bringing passion and dedication to every performance.",
+        "no_members": "No members found.",
+        "member_items": [
+            {
+                "id": 1,
+                "name": "Ola Nordmann",
+                "bio": "Ola is a dedicated cornet player with a passion for classical and contemporary brass music. He has been a member of Brøttum Brass for over 10 years, contributing to numerous performances and competitions.",
+                "image_path": "/static/images/members/ola_nordmann.jpg",
+                "section": "Cornet",
+                "instrument": "2nd Cornet",
+                "favorite_piece": "The Phantom of the Opera"
+            },
+            {
+                "id": 2,
+                "name": "Kari Nordmann",
+                "bio": "Kari is a talented percussion player known for her expressive playing style. She has been with Brøttum Brass for 5 years and has participated in various national and international competitions.",
+                "image_path": "/static/images/members/kari_nordmann.jpg",
+                "section": "Percussion",
+                "instrument": "Melodic Percussion",
+                "favorite_piece": "The Planets by Gustav Holst"
+            },
+            {
+                "id": 3,
+                "name": "Per Hansen",
+                "bio": "Per is a skilled trombone player with a background in jazz and classical music. He has been a member of Brøttum Brass for 8 years, bringing his expertise to the band's performances.",
+                "image_path": "/static/images/members/per_hansen.jpg",
+                "section": "Trombone",
+                "instrument": "Bass Trombone",
+                "favorite_piece": "Blue Bells of Scotland"
+            }
+        ]
     }
 }
