@@ -25,8 +25,12 @@ func renderCurrentPageContent(r *http.Request, languageContent language.Content,
 	switch currentPath {
 	case "/events":
 		return html.EventsView(languageContent.Events.EventItems, languageContent, theme)
+	case "/about":
+		return html.AboutView(languageContent, theme)
 	case "/members":
 		return html.MembersView(languageContent.Members.MemberItems, languageContent, theme)
+	case "/{$}":
+		return html.NotFoundView(languageContent, theme)
 	default:
 		return html.HomeContent(languageContent, theme)
 	}

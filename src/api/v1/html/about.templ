@@ -1,0 +1,150 @@
+package html
+
+import (
+	"fmt"
+
+	"github.com/brottum-brass/forum/src/models"
+	"github.com/brottum-brass/forum/src/utils/language"
+	"github.com/brottum-brass/forum/src/utils/theme"
+)
+
+templ StatCard(value string, label string, theme theme.Mode) {
+	<div class={ "p-4 rounded-xl border text-center backdrop-blur-md", theme.SecondaryBackground, theme.PrimaryBorder }>
+		<p class={ "text-2xl sm:text-3xl font-black tracking-tight", theme.AccentText }>{ value }</p>
+		<p class={ "text-xs font-semibold uppercase tracking-wider mt-1", theme.SecondaryText }>{ label }</p>
+	</div>
+}
+
+templ ConductorCard(conductor models.ConductorItem, theme theme.Mode) {
+	<div class={ "flex flex-col md:flex-row gap-6 items-center md:items-start p-4 rounded-xl border", theme.SecondaryBackground, theme.PrimaryBorder }>
+		if conductor.ImagePath != "" {
+			<div class="w-28 h-28 sm:w-36 sm:h-36 rounded-xl overflow-hidden shrink-0 border shadow-md">
+				<img src={ conductor.ImagePath } alt={ conductor.Name } class="w-full h-full object-cover"/>
+			</div>
+		}
+		<div class="space-y-2 text-center md:text-left flex-1">
+			if conductor.Title != "" {
+				<span class={ "inline-block text-[10px] font-extrabold px-2 py-0.5 rounded border uppercase tracking-wider", theme.AccentBackground, theme.AccentText, theme.AccentBorder }>
+					{ conductor.Title }
+				</span>
+			}
+			<h2 class={ "text-xl font-extrabold tracking-tight", theme.PrimaryText }>
+				{ conductor.Name }
+			</h2>
+			<p class={ "text-xs sm:text-sm leading-relaxed whitespace-pre-line", theme.SecondaryText }>
+				{ conductor.Bio }
+			</p>
+			if conductor.Vision != "" {
+				<p class={ "text-xs italic pt-2 border-t", theme.PrimaryBorder, theme.SecondaryText }>
+					{ conductor.Vision }
+				</p>
+			}
+		</div>
+	</div>
+}
+
+templ AboutHistorySection(about language.About, theme theme.Mode) {
+	<div class={ "p-6 rounded-2xl border backdrop-blur-md space-y-4", theme.SecondaryBackground, theme.PrimaryBorder }>
+		<div>
+			<h2 class={ "text-xl font-extrabold tracking-tight mb-2", theme.PrimaryText }>
+				{ about.History.Title }
+			</h2>
+			<p class={ "text-xs sm:text-sm leading-relaxed", theme.SecondaryText }>
+				{ about.History.Content }
+			</p>
+		</div>
+		<div class={ "pt-4 border-t", theme.PrimaryBorder }>
+			<h3 class={ "text-sm font-bold uppercase tracking-wider mb-1", theme.AccentText }>
+				{ about.Mission.Title }
+			</h3>
+			<p class={ "text-xs sm:text-sm leading-relaxed", theme.SecondaryText }>
+				{ about.Mission.Content }
+			</p>
+		</div>
+	</div>
+}
+
+templ CompetitionTable(competition language.About, theme theme.Mode) {
+	<div class={ "p-6 rounded-2xl border backdrop-blur-md space-y-4", theme.SecondaryBackground, theme.PrimaryBorder }>
+		<h2 class={ "text-xl font-extrabold tracking-tight", theme.PrimaryText }>
+			{ competition.Competition.Title }
+		</h2>
+		<div class="overflow-x-auto">
+			<table class="w-full text-left text-xs sm:text-sm border-collapse">
+				<thead>
+					<tr class={ "border-b text-[11px] uppercase tracking-wider font-bold", theme.PrimaryBorder, theme.AccentText }>
+						<th class="py-2 px-3">{ competition.Competition.YearLabel }</th>
+						<th class="py-2 px-3">{ competition.Competition.EventLabel }</th>
+						<th class="py-2 px-3">{ competition.Competition.PieceLabel }</th>
+						<th class="py-2 px-3">{ competition.Competition.ConductorLabel }</th>
+						<th class="py-2 px-3 text-right">{ competition.Competition.PositionLabel }</th>
+					</tr>
+				</thead>
+				<tbody class={ "divide-y", theme.PrimaryBorder }>
+					for _, resultItem := range competition.Competition.CompetitionResultItems {
+						<tr class="hover:bg-white/5 transition-colors">
+							<td class={ "py-3 px-3 font-bold whitespace-nowrap", theme.PrimaryText }>
+								{ fmt.Sprintf("%d", resultItem.Year) }
+							</td>
+							<td class={ "py-3 px-3 whitespace-nowrap", theme.PrimaryText }>
+								{ resultItem.Event }
+							</td>
+							<td class={ "py-3 px-3 italic", theme.SecondaryText }>
+								if resultItem.Piece != "" {
+									{ fmt.Sprintf("\"%s\"", resultItem.Piece) }
+								} else {
+									{ "-" }
+								}
+							</td>
+							<td class={ "py-3 px-3 whitespace-nowrap", theme.SecondaryText }>
+								{ resultItem.Conductor }
+							</td>
+							<td class="py-3 px-3 text-right font-black whitespace-nowrap">
+								<span class={ "px-2.5 py-1 rounded-md text-xs inline-block", theme.AccentBackground, theme.AccentText, theme.AccentBorder }>
+									{ resultItem.Position }
+								</span>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+}
+
+templ AboutView(languageContent language.Content, theme theme.Mode) {
+	<div class="max-w-4xl mx-auto space-y-8 py-4 px-2">
+		<div class="text-center sm:text-left">
+			<h1 class={ "text-2xl sm:text-3xl font-extrabold tracking-tight mb-1", theme.PrimaryText }>
+				{ languageContent.About.PageTitle }
+			</h1>
+			<p class={ "text-xs uppercase tracking-wider font-semibold", theme.SecondaryText }>
+				{ languageContent.About.Subtitle }
+			</p>
+		</div>
+
+		<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+			@StatCard(languageContent.About.Stats.EstablishedYear, languageContent.About.Stats.EstablishedLabel, theme)
+			@StatCard(languageContent.About.Stats.MembersCount, languageContent.About.Stats.MembersLabel, theme)
+			@StatCard(languageContent.About.Stats.DivisionName, languageContent.About.Stats.DivisionLabel, theme)
+			@StatCard(languageContent.About.Stats.Location, languageContent.About.Stats.LocationLabel, theme)
+		</div>
+
+		@AboutHistorySection(languageContent.About, theme)
+
+		<div class={ "p-6 rounded-2xl border backdrop-blur-md space-y-4", theme.SecondaryBackground, theme.PrimaryBorder }>
+			<h2 class={ "text-xl font-extrabold tracking-tight", theme.PrimaryText }>
+                if len(languageContent.About.Conductor.ConductorItems) > 1 {
+                    { languageContent.About.Conductor.TitlePlural }
+                } else {
+                    { languageContent.About.Conductor.TitleSingular }
+                }
+			</h2>
+			for _, conductor := range languageContent.About.Conductor.ConductorItems {
+				@ConductorCard(conductor, theme)
+			}
+		</div>
+
+		@CompetitionTable(languageContent.About, theme)
+	</div>
+}
