@@ -41,3 +41,14 @@ templ Body(language language.Content, theme theme.Mode, content templ.Component)
         @Footer(language, theme)
     </div>
 }
+
+templ PageTitle(title string, subtitle string, theme theme.Mode) {
+    <div class="mb-6 text-left">
+        <h1 class={ "text-3xl font-extrabold tracking-tight mb-1 " + theme.PrimaryText }>
+            { title }
+        </h1>
+        <p class={ "text-xs uppercase tracking-wider font-semibold " + theme.SecondaryText }>
+            { subtitle }
+        </p>
+    </div>
+}

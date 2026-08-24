@@ -110,14 +110,7 @@ templ EventCard(event models.EventItem, index int, lang language.Content, theme 
 
 templ EventsView(events []models.EventItem, lang language.Content, theme theme.Mode) {
     <div class="container mx-auto px-4 py-8 max-w-6xl">
-        <div class="mb-6 text-center sm:text-left">
-            <h1 class={ "text-3xl font-extrabold tracking-tight mb-1 " + theme.PrimaryText }>
-                { lang.Events.PageTitle }
-            </h1>
-            <p class={ "text-xs uppercase tracking-wider font-semibold " + theme.SecondaryText }>
-                { lang.Events.SwipeHint }
-            </p>
-        </div>
+        @PageTitle(lang.Events.PageTitle, lang.Events.SwipeHint, theme)
 
         if len(events) == 0 {
             <div class={ "text-center py-12 rounded-xl border border-dashed " + theme.PrimaryBorder }>

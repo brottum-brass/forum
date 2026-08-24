@@ -113,15 +113,8 @@ templ CompetitionTable(competition language.About, theme theme.Mode) {
 }
 
 templ AboutView(languageContent language.Content, theme theme.Mode) {
-	<div class="max-w-4xl mx-auto space-y-8 py-4 px-2">
-		<div class="text-center sm:text-left">
-			<h1 class={ "text-2xl sm:text-3xl font-extrabold tracking-tight mb-1", theme.PrimaryText }>
-				{ languageContent.About.PageTitle }
-			</h1>
-			<p class={ "text-xs uppercase tracking-wider font-semibold", theme.SecondaryText }>
-				{ languageContent.About.Subtitle }
-			</p>
-		</div>
+	<div class="container mx-auto px-4 py-8 max-w-6xl space-y-8">
+		@PageTitle(languageContent.About.PageTitle, languageContent.About.Subtitle, theme)
 
 		<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
 			@StatCard(languageContent.About.Stats.EstablishedYear, languageContent.About.Stats.EstablishedLabel, theme)
