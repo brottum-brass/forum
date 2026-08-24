@@ -77,11 +77,13 @@ type About struct {
 }
 
 type Events struct {
-	PageTitle  string             `json:"page_title"`
-	SwipeHint  string             `json:"swipe_hint"`
-	NoEvents   string             `json:"no_events"`
-	GetTickets string             `json:"get_tickets"`
-	EventItems []models.EventItem `json:"event_items"`
+	PageTitle          string             `json:"page_title"`
+	SwipeHint          string             `json:"swipe_hint"`
+	NoEvents           string             `json:"no_events"`
+	GetTickets         string             `json:"get_tickets"`
+	TicketsUnavailable string             `json:"tickets_unavailable"`
+	FreeEntrance       string             `json:"free_entrance"`
+	EventItems         []models.EventItem `json:"event_items"`
 }
 
 func (e *Events) GetEventByID(id int) (*models.EventItem, error) {
@@ -91,7 +93,7 @@ func (e *Events) GetEventByID(id int) (*models.EventItem, error) {
 		}
 	}
 
-	return nil, fmt.Errorf("not found")
+	return nil, fmt.Errorf("event with ID %d not found", id)
 }
 
 type Members struct {
@@ -108,5 +110,5 @@ func (m *Members) GetMemberByID(id int) (*models.MemberItem, error) {
 		}
 	}
 
-	return nil, fmt.Errorf("not found")
+	return nil, fmt.Errorf("member with ID %d not found", id)
 }

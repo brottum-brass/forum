@@ -7,18 +7,11 @@ import (
     "github.com/brottum-brass/forum/src/utils/theme"
 )
 
-func FormatEventDateRange(event models.EventItem) string {
-    if !event.EndDate.IsZero() && event.EndDate.Day() != event.StartDate.Day() {
-        return event.FormattedStartDate() + " - " + event.FormattedEndDate()
-    }
-    return event.FormattedStartDate()
-}
-
 templ EventBadge(event models.EventItem, theme theme.Mode) {
     <div class="flex items-center justify-between gap-2">
         <div class={ "inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border " + theme.AccentBackground + " " + theme.AccentBorder }>
             <span class={ "text-xs font-extrabold uppercase tracking-wide " + theme.AccentText }>
-                { FormatEventDateRange(event) }
+                { event.FormattedDateRange() }
             </span>
             <span class={ "text-xs font-semibold opacity-70 " + theme.AccentText }>
                 • { event.FormattedTime() }
@@ -47,21 +40,25 @@ templ EventDetails(event models.EventItem, theme theme.Mode) {
     </div>
 }
 
-templ EventTicketButton(ticketLink string, label string, theme theme.Mode) {
+templ EventTicketButton(event models.EventItem, lang language.Content, theme theme.Mode) {
     <div>
-        if ticketLink != "" {
+        if event.IsFreeEntrance {
+            <div class={ "w-full text-center py-2.5 px-4 rounded-xl text-xs font-semibold opacity-70 border " + theme.SecondaryBackground + " " + theme.SecondaryText + " " + theme.PrimaryBorder }>
+                { lang.Events.FreeEntrance }
+            </div>
+        } else if event.TicketLink != "" {
             <a 
-                href={ templ.SafeURL(ticketLink) } 
+                href={ templ.SafeURL(event.TicketLink) } 
                 target="_blank" 
                 rel="noopener noreferrer"
                 class={ "flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl font-extrabold text-sm transition-all duration-200 hover:brightness-105 active:scale-[0.98] shadow-md " + theme.ButtonBackground + " " + theme.ButtonText }
             >
-                <span>{ label }</span>
+                <span>{ lang.Events.GetTickets }</span>
                 <img src="/static/icons/arrow-right.svg" alt="" class="w-4 h-4"/>
             </a>
         } else {
-            <div class={ "w-full text-center py-2.5 px-4 rounded-xl text-xs font-semibold opacity-60 " + theme.SecondaryBackground + " " + theme.SecondaryText }>
-                Free Entrance
+            <div class={ "w-full text-center py-2.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider opacity-50 border border-dashed " + theme.SecondaryBackground + " " + theme.SecondaryText + " " + theme.PrimaryBorder }>
+                { lang.Events.TicketsUnavailable }
             </div>
         }
     </div>
@@ -105,7 +102,7 @@ templ EventCard(event models.EventItem, index int, lang language.Content, theme 
 
             <div class="pt-4 space-y-4">
                 @EventDetails(event, theme)
-                @EventTicketButton(event.TicketLink, lang.Events.GetTickets, theme)
+                @EventTicketButton(event, lang, theme)
             </div>
         </div>
     </div>
