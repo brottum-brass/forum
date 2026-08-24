@@ -29,8 +29,8 @@ func renderCurrentPageContent(r *http.Request, languageContent language.Content,
 		return html.AboutView(languageContent, theme)
 	case "/members":
 		return html.MembersView(languageContent.Members.MemberItems, languageContent, theme)
-	case "/{$}":
-		return html.NotFoundView(languageContent, theme)
+	case "/contact":
+		return html.ContactView(languageContent, theme)
 	default:
 		return html.HomeContent(languageContent, theme)
 	}

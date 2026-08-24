@@ -19,6 +19,7 @@ func NewRouter() *Router {
 	mux.Handle("GET /events", v1.HandleEvents())
 	mux.Handle("GET /about", v1.HandleAbout())
 	mux.Handle("GET /members", v1.HandleMembers())
+	mux.Handle("GET /contact", v1.HandleContact())
 
 	mux.Handle("GET /static/css/", http.StripPrefix("/static/css/", http.FileServer(http.Dir(appCtx.Config.CSS))))
 	mux.Handle("GET /static/icons/", http.StripPrefix("/static/icons/", http.FileServer(http.Dir(appCtx.Config.Icons))))
