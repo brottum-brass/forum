@@ -1,0 +1,89 @@
+package html
+
+import (
+	"github.com/brottum-brass/forum/src/models"
+	"github.com/brottum-brass/forum/src/utils/language"
+	"github.com/brottum-brass/forum/src/utils/theme"
+)
+
+templ BoardMemberCard(member models.BoardMemberItem, theme theme.Mode) {
+	<div class={ "flex flex-col sm:flex-row gap-4 items-center sm:items-start p-5 rounded-2xl border backdrop-blur-md transition-all duration-200 hover:shadow-md", theme.SecondaryBackground, theme.PrimaryBorder }>
+		if member.ImagePath != "" {
+			<div class="w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden shrink-0 border shadow-sm">
+				<img src={ member.ImagePath } alt={ member.Name } class="w-full h-full object-cover"/>
+			</div>
+		} else {
+			<div class={ "w-20 h-20 sm:w-24 sm:h-24 rounded-xl shrink-0 border flex items-center justify-center font-bold text-xl uppercase tracking-wider opacity-60", theme.AccentBackground, theme.AccentText, theme.AccentBorder }>
+				{ string([]rune(member.Name)[0]) }
+			</div>
+		}
+
+		<div class="space-y-2 text-center sm:text-left flex-1 w-full">
+			<div>
+				<span class={ "inline-block text-[10px] font-extrabold px-2.5 py-0.5 rounded-md border uppercase tracking-wider mb-1", theme.AccentBackground, theme.AccentText, theme.AccentBorder }>
+					{ member.Role }
+				</span>
+				<h3 class={ "text-lg font-extrabold tracking-tight", theme.PrimaryText }>
+					{ member.Name }
+				</h3>
+			</div>
+
+			<div class={ "pt-2 space-y-1.5 border-t text-xs font-medium", theme.PrimaryBorder, theme.SecondaryText }>
+				if member.Email != "" {
+					<a 
+						href={ templ.SafeURL("mailto:" + member.Email) } 
+						class={ "flex items-center justify-center sm:justify-start gap-2 hover:underline truncate", theme.PrimaryText }
+					>
+						<img src="/static/icons/paper-plane.svg" alt="Email" class={ "w-3.5 h-3.5 shrink-0 " + theme.IconFilter }/>
+						<span class="truncate">{ member.Email }</span>
+					</a>
+				}
+				if member.Phone != "" {
+					<a 
+						href={ templ.SafeURL("tel:" + member.Phone) } 
+						class={ "flex items-center justify-center sm:justify-start gap-2 hover:underline truncate", theme.SecondaryText }
+					>
+						<img src="/static/icons/phone-call.svg" alt="Phone" class={ "w-3.5 h-3.5 shrink-0 " + theme.IconFilter }/>
+						<span>{ member.Phone }</span>
+					</a>
+				}
+			</div>
+		</div>
+	</div>
+}
+
+templ BoardSection(board language.BoardSection, theme theme.Mode) {
+	<div class="space-y-4">
+		<div class="mb-2">
+			<h2 class={ "text-xl font-extrabold tracking-tight", theme.PrimaryText }>
+				{ board.Title }
+			</h2>
+			if board.Subtitle != "" {
+				<p class={ "text-xs font-semibold uppercase tracking-wider opacity-80 mt-0.5", theme.SecondaryText }>
+					{ board.Subtitle }
+				</p>
+			}
+		</div>
+
+		if len(board.BoardMemberItems) == 0 {
+			<div class={ "text-center py-8 rounded-xl border border-dashed", theme.PrimaryBorder }>
+				<p class={ "text-sm font-medium", theme.SecondaryText }>
+					{ board.NoBoardMembers }
+				</p>
+			</div>
+		} else {
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+				for _, member := range board.BoardMemberItems {
+					@BoardMemberCard(member, theme)
+				}
+			</div>
+		}
+	</div>
+}
+
+templ ContactView(languageContent language.Content, theme theme.Mode) {
+    <div class="container mx-auto px-4 py-8 max-w-6xl space-y-8">
+        @PageTitle(languageContent.Contact.PageTitle, languageContent.Contact.Subtitle, theme)
+        @BoardSection(languageContent.Contact.BoardSection, theme)
+    </div>
+}

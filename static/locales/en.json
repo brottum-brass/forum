@@ -228,6 +228,31 @@
             }
         ]
     },
+    "contact": {
+        "page_title": "Contact Us",
+        "subtitle": "Get in touch with the board or send us a message",
+        "board_section": {
+            "title": "The Board of Brøttum Brass",
+            "subtitle": "Overview of the board members and their roles",
+            "no_board_members": "No board members registered.",
+            "board_member_items": [
+                {
+                    "id": 1,
+                    "name": "Kari Nordmann",
+                    "role": "Chairperson",
+                    "email": "leder@brottum-brass.no",
+                    "phone": "+47 900 00 000",
+                    "image_path": "/static/images/board/kari.jpg"
+                },
+                {
+                    "id": 2,
+                    "name": "Ola Nordmann",
+                    "role": "Treasurer",
+                    "email": "kasserer@brottum-brass.no"
+                }
+            ]
+        }
+    },
     "not_found": {
         "title": "404 - Page Not Found",
         "message": "Sorry, the page you are looking for does not exist.",

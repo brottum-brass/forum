@@ -228,6 +228,31 @@
             }
         ]
     },
+    "contact": {
+        "page_title": "Kontakt Oss",
+        "subtitle": "Ta kontakt med styret eller send oss en henvendelse",
+        "board_section": {
+            "title": "Styret i Brøttum Brass",
+            "subtitle": "Oversikt over styrets medlemmer og roller",
+            "no_board_members": "Ingen styremedlemmer registrert.",
+            "board_member_items": [
+                {
+                    "id": 1,
+                    "name": "Kari Nordmann",
+                    "role": "Styreleder",
+                    "email": "leder@brottum-brass.no",
+                    "phone": "+47 900 00 000",
+                    "image_path": "/static/images/board/kari.jpg"
+                },
+                {
+                    "id": 2,
+                    "name": "Ola Nordmann",
+                    "role": "Kasserer",
+                    "email": "kasserer@brottum-brass.no"
+                }
+            ]
+        }
+    },
     "not_found": {
         "title": "404 - Siden ble ikke funnet",
         "message": "Beklager, siden du leter etter eksisterer ikke.",

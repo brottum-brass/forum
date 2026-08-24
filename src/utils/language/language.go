@@ -31,6 +31,7 @@ type Content struct {
 	Events   Events  `json:"events"`
 	About    About   `json:"about"`
 	Members  Members `json:"members"`
+	Contact  Contact `json:"contact"`
 	NotFound struct {
 		Title    string `json:"title"`
 		Message  string `json:"message"`
@@ -111,4 +112,17 @@ func (m *Members) GetMemberByID(id int) (*models.MemberItem, error) {
 	}
 
 	return nil, fmt.Errorf("member with ID %d not found", id)
+}
+
+type Contact struct {
+	PageTitle    string       `json:"page_title"`
+	Subtitle     string       `json:"subtitle"`
+	BoardSection BoardSection `json:"board_section"`
+}
+
+type BoardSection struct {
+	Title            string                   `json:"title"`
+	Subtitle         string                   `json:"subtitle"`
+	NoBoardMembers   string                   `json:"no_board_members"`
+	BoardMemberItems []models.BoardMemberItem `json:"board_member_items"`
 }
