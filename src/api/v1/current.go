@@ -10,7 +10,7 @@ import (
 	"github.com/brottum-brass/forum/src/utils/theme"
 )
 
-func renderCurrentPageContent(r *http.Request, lang language.Content, th theme.Mode) templ.Component {
+func renderCurrentPageContent(r *http.Request, languageContent language.Content, theme theme.Mode) templ.Component {
 	currentPath := "/"
 	if hxURL := r.Header.Get("HX-Current-URL"); hxURL != "" {
 		if parsed, err := url.Parse(hxURL); err == nil {
@@ -24,8 +24,10 @@ func renderCurrentPageContent(r *http.Request, lang language.Content, th theme.M
 
 	switch currentPath {
 	case "/events":
-		return html.EventsView(lang.Events.EventItems, lang, th)
+		return html.EventsView(languageContent.Events.EventItems, languageContent, theme)
+	case "/members":
+		return html.MembersView(languageContent.Members.MemberItems, languageContent, theme)
 	default:
-		return html.HomeContent(lang, th)
+		return html.HomeContent(languageContent, theme)
 	}
 }
