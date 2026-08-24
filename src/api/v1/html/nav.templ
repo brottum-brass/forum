@@ -32,7 +32,6 @@ templ MobileNavItem(href string, iconPath string, label string, theme theme.Mode
         hx-target="#main-content"
         hx-swap="innerHTML"
         hx-push-url="true"
-        onclick="closeMobileMenu()"
         class={ "group flex items-center space-x-3 px-3 py-2.5 rounded-lg transition-all duration-150 " + theme.HoverBackground }
     >
         <img 
@@ -86,7 +85,6 @@ templ HamburgerButton(theme theme.Mode) {
         type="button"
         id="menu-btn"
         aria-label="Toggle Navigation Menu"
-        onclick="toggleMobileMenu()"
         class={ "group relative flex items-center justify-center px-2 py-2 rounded-lg transition-all duration-150 focus:outline-none border border-transparent md:hidden " + theme.HoverBackground + " " + theme.HoverBorder + " " + theme.SecondaryText }
     >
         <div class="h-5 w-5 opacity-0"></div>
