@@ -103,6 +103,85 @@
             }
         ]
     },
+    "about": {
+        "page_title": "About Brøttum Brass",
+        "subtitle": "History, versatility, and musical passion",
+        "stats": {
+            "established_label": "Established",
+            "established_year": "1892",
+            "members_label": "Active Members",
+            "members_count": "30+",
+            "division_label": "NM Division",
+            "division_name": "Elite Division",
+            "location_label": "Home Base",
+            "location": "Brøttum"
+        },
+        "history": {
+            "title": "Our History & Purpose",
+            "content": "Brøttum Brass was founded to bring together passionate brass musicians from the local community. Over the decades, the band has evolved from a local gathering into a competitive brass band delivering high-level concert experiences."
+        },
+        "mission": {
+            "title": "Core Mission",
+            "content": "We aim to inspire musical enthusiasm, promote the brass band tradition in Innlandet, and provide our members with an inclusive environment for artistic growth."
+        },
+        "conductor": {
+            "title_singular": "Meet Our Conductor",
+            "title_plural": "Meet Our Conductors",
+            "vision_label": "Conductor's Vision:",
+            "conductor_items": [
+                {
+                    "id": 1,
+                    "name": "Kari Nordmann",
+                    "bio": "Kari is an experienced conductor with a background in both classical and popular music. She has led Brøttum Brass since 2020 and has a passion for developing musical talent.",
+                    "title": "Chief Conductor",
+                    "image_path": "/static/images/conductors/kari_nordmann.jpg",
+                    "vision": "To cultivate a vibrant and inclusive brass band community, fostering musical excellence and creativity among our members."                    
+                },
+                {
+                    "id": 2,
+                    "name": "Lars Johansen",
+                    "bio": "Lars is a versatile conductor and arranger, known for his innovative programming and dynamic conducting style. He has been a guest conductor for Brøttum Brass on several occasions.",
+                    "title": "Guest Conductor",
+                    "image_path": "/static/images/conductors/lars_johansen.jpg",
+                    "vision": "To inspire and develop the next generation of brass musicians."
+                }
+            ]
+        },
+        "competition": {
+            "title": "Competition Results",
+            "year_label": "Year",
+            "event_label": "Event",
+            "piece_label": "Piece",
+            "conductor_label": "Conductor",
+            "position_label": "Position",
+            "competition_result_items": [
+                {
+                    "id": 1,
+                    "year": 2026,
+                    "event": "Norwegian National Championships",
+                    "piece": "The Great Escape",
+                    "conductor": "Kari Nordmann",
+                    "position": "3rd Place"
+                },
+                {
+                    "id": 2,
+                    "year": 2025,
+                    "event": "Innlandet Championship",
+                    "piece": "The Planets",
+                    "conductor": "Kari Nordmann",
+                    "position": "1st Place"
+                },
+                {
+                    "id": 3,
+                    "year": 2024,
+                    "event": "Norwegian National Championships",
+                    "piece": "The Phantom of the Opera",
+                    "conductor": "Kari Nordmann",
+                    "position": "2nd Place"
+                }
+            ]
+        }
+    },
     "members": {
         "page_title": "Members",
         "subtitle": "Meet the talented musicians of Brøttum Brass. Our members are the heart and soul of our band, bringing passion and dedication to every performance.",
@@ -136,5 +215,10 @@
                 "favorite_piece": "Blue Bells of Scotland"
             }
         ]
+    },
+    "not_found": {
+        "title": "404 - Page Not Found",
+        "message": "Sorry, the page you are looking for does not exist.",
+        "home_link": "Go to Home"
     }
 }

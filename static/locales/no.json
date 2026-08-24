@@ -103,6 +103,85 @@
             }
         ]
     },
+    "about": {
+        "page_title": "Om Brøttum Brass",
+        "subtitle": "Historie, variasjon og musikalsk lidenskap",
+        "stats": {
+            "established_label": "Etablert",
+            "established_year": "1892",
+            "members_label": "Aktive Medlemmer",
+            "members_count": "30+",
+            "division_label": "NM Divisjon",
+            "division_name": "Elite Divisjon",
+            "location_label": "Hjemsted",
+            "location": "Brøttum"
+        },
+        "history": {
+            "title": "Vår Historie & Formål",
+            "content": "Brøttum Brass ble stiftet for å samle spilleglade korpsmusikere i lokalsamfunnet. Gjennom tiårene har korpset utviklet seg fra et lokalt samlingspunkt til et konkurransedyktig brassband som leverer konsertopplevelser på høyt nivå."
+        },
+        "mission": {
+            "title": "Kjernemisjon",
+            "content": "Vi ønsker å skape musikalsk begeistring, fremme brassband-tradisjonen i Innlandet, og gi våre medlemmer et inkluderende miljø for kunstnerisk utvikling."
+        },
+        "conductor": {
+            "title_singular": "Møt Vår Dirigent",
+            "title_plural": "Møt Våre Dirigenter",
+            "vision_label": "Dirigentens visjon:",
+            "conductor_items": [
+                {
+                    "id": 1,
+                    "name": "Kari Nordmann",
+                    "bio": "Kari er en talentfull slagverker kjent for sin uttrykksfulle spillestil. Hun har vært medlem av Brøttum Brass i 5 år og har deltatt i mange nasjonale og internasjonale konkurranser.",
+                    "title": "Hoveddirigent",
+                    "image_path": "/static/images/conductors/kari_nordmann.jpg",
+                    "vision": "Å dyrke et levende og inkluderende brassband-miljø, fremme musikalsk dyktighet og kreativitet blant våre medlemmer."                    
+                },
+                {
+                    "id": 2,
+                    "name": "Lars Johansen",
+                    "bio": "Lars er en fleksibel dirigent og arrangerer, kjent for sin innovative programmering og dynamiske dirigentstil. Han har vært gjestedirigent for Brøttum Brass på flere anledninger.",
+                    "title": "Gjestedirigent",
+                    "image_path": "/static/images/conductors/lars_johansen.jpg",
+                    "vision": "Å inspirere og utvikle neste generasjon av brassmusikere."
+                }
+            ]
+        },
+        "competition": {
+            "title": "Konkurranseresultater",
+            "year_label": "År",
+            "event_label": "Arrangement",
+            "piece_label": "Stykke",
+            "conductor_label": "Dirigent",
+            "position_label": "Plassering",
+            "competition_result_items": [
+                {
+                    "id": 1,
+                    "year": 2026,
+                    "event": "NM Brass",
+                    "piece": "The Great Escape",
+                    "conductor": "Kari Nordmann",
+                    "position": "3. Plass"
+                },
+                {
+                    "id": 2,
+                    "year": 2025,
+                    "event": "Innlandsmesterskapet",
+                    "piece": "The Planets",
+                    "conductor": "Kari Nordmann",
+                    "position": "1. Plass"
+                },
+                {
+                    "id": 3,
+                    "year": 2024,
+                    "event": "NM Brass",
+                    "piece": "The Phantom of the Opera",
+                    "conductor": "Kari Nordmann",
+                    "position": "2. Plass"
+                }
+            ]
+        }
+    },
     "members": {
         "page_title": "Medlemmer",
         "subtitle": "Møt de talentfulle musikere i Brøttum Brass. Våre medlemmer er hjertet og sjelen i vårt band, og de bringer lidenskap og dedikasjon til hver eneste framføring.",
@@ -136,5 +215,10 @@
                 "favorite_piece": "Blue Bells of Scotland"
             }
         ]
+    },
+    "not_found": {
+        "title": "404 - Siden ble ikke funnet",
+        "message": "Beklager, siden du leter etter eksisterer ikke.",
+        "home_link": "Gå tilbake forsiden"
     }
 }
