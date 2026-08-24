@@ -1,0 +1,103 @@
+package html
+
+import (
+    "github.com/brottum-brass/forum/src/models"
+    "github.com/brottum-brass/forum/src/utils/language"
+    "github.com/brottum-brass/forum/src/utils/theme"
+)
+
+templ MemberAccordionCard(member models.MemberItem, theme theme.Mode) {
+    <div 
+        tabindex="0"
+        style="width: 76px; min-width: 76px; height: 360px; transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);"
+        class={ 
+            "member-accordion-card group relative rounded-2xl border overflow-hidden cursor-pointer select-none shrink-0 transition-all duration-300 ",
+            theme.SecondaryBackground, 
+            theme.PrimaryBorder,
+            "hover:shadow-2xl hover:border-amber-400/60",
+        }
+    >
+        <div class="absolute inset-0 w-full h-full pointer-events-none">
+            if member.ImagePath != "" {
+                <img 
+                    src={ member.ImagePath } 
+                    alt="" 
+                    class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                />
+            } else {
+                <div class={ "w-full h-full flex flex-col items-center justify-center p-2 " + theme.SecondaryBackground }>
+                    <img src="/static/icons/members.svg" alt="" class={ "w-8 h-8 opacity-30 " + theme.IconFilter }/>
+                </div>
+            }
+        </div>
+
+        <div class={ "absolute inset-0 opacity-0 group-hover:opacity-95 transition-opacity duration-400 pointer-events-none backdrop-blur-md " + theme.PrimaryBackground }></div>
+
+        <div 
+            style="writing-mode: vertical-rl; transform: rotate(180deg); transition: opacity 0.2s ease;"
+            class="vertical-title absolute inset-0 p-4 flex items-center justify-start pointer-events-none z-10"
+        >
+            <span class={ "text-xs font-bold tracking-widest uppercase whitespace-nowrap drop-shadow-md " + theme.PrimaryText }>
+                { member.Name }
+            </span>
+        </div>
+
+        <div 
+            style="visibility: hidden; opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease;" 
+            class="expanded-content pointer-events-none absolute inset-0 p-5 flex flex-col justify-end text-left z-20 w-full h-full"
+        >
+            <div class="space-y-1 shrink-0">
+                <div>
+                    <span class={ "inline-block text-[10px] font-extrabold px-2 py-0.5 rounded border uppercase tracking-wider backdrop-blur-md " + theme.AccentBackground + " " + theme.AccentText + " " + theme.AccentBorder }>
+                        { member.Instrument }
+                    </span>
+                </div>
+                <h3 class={ "text-xl font-extrabold tracking-tight leading-tight " + theme.PrimaryText }>
+                    { member.Name }
+                </h3>
+            </div>
+
+            <div class={ "mt-2 pt-2 border-t space-y-2 text-xs max-h-[180px] overflow-y-auto scrollbar-none " + theme.PrimaryBorder }>
+                if member.FavoritePiece != "" {
+                    <div class={ "p-2 rounded-lg border backdrop-blur-md shrink-0 " + theme.SecondaryBackground + " " + theme.PrimaryBorder }>
+                        <p class={ "text-[11px] " + theme.PrimaryText }>
+                            <span class={ "font-bold " + theme.AccentText }>Favorite Piece:</span> 
+                            <span class={ "italic " + theme.SecondaryText }>"{ member.FavoritePiece }"</span>
+                        </p>
+                    </div>
+                }
+
+                if member.Bio != "" {
+                    <p class={ "text-[11px] leading-relaxed whitespace-pre-line " + theme.SecondaryText }>
+                        { member.Bio }
+                    </p>
+                } else {
+                    <p class={ "text-[11px] italic opacity-60 " + theme.SecondaryText }>
+                        No bio provided.
+                    </p>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+templ MembersView(members []models.MemberItem, lang language.Content, theme theme.Mode) {
+    <div class="flex-1 flex flex-col justify-center space-y-4 my-auto">
+        <div class="text-center sm:text-left shrink-0">
+            <h1 class={ "text-2xl sm:text-3xl font-extrabold tracking-tight mb-1 " + theme.PrimaryText }>
+                { lang.Members.PageTitle }
+            </h1>
+            <p class={ "text-xs uppercase tracking-wider font-semibold " + theme.SecondaryText }>
+                { lang.Members.Subtitle }
+            </p>
+        </div>
+
+        <div class="flex justify-center w-full overflow-x-auto shrink-0 py-1">
+            <div class="flex flex-row items-center justify-center gap-3">
+                for _, member := range members {
+                    @MemberAccordionCard(member, theme)
+                }
+            </div>
+        </div>
+    </div>
+}
