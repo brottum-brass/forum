@@ -12,6 +12,7 @@ type Config struct {
 	DefaultTheme    string
 	CSS             string
 	Icons           string
+	JS              string
 	Locales         string
 	Themes          string
 }
@@ -22,6 +23,7 @@ func NewConfig() *Config {
 	defaultTheme := mustGetEnv("DEFAULT_THEME")
 	css := mustGetEnv("CSS")
 	icons := mustGetEnv("ICONS")
+	js := mustGetEnv("JS")
 	locales := mustGetEnv("LOCALES")
 	themes := mustGetEnv("THEMES")
 
@@ -36,6 +38,7 @@ func NewConfig() *Config {
 		DefaultTheme:    defaultTheme,
 		CSS:             css,
 		Icons:           icons,
+		JS:              js,
 		Locales:         locales,
 		Themes:          themes,
 	}
