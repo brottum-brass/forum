@@ -17,6 +17,12 @@ func HandleNotFound() http.HandlerFunc {
 		theme := appCtx.Theme.T(r.Context(), preference.Theme)
 
 		w.WriteHeader(http.StatusNotFound)
-		html.NotFound(languageContent, theme).Render(r.Context(), w)
+
+		if r.Header.Get("HX-Request") == "true" {
+			html.NotFoundView(languageContent, theme).Render(r.Context(), w)
+			return
+		}
+
+		html.Document(languageContent, theme, html.NotFoundView(languageContent, theme)).Render(r.Context(), w)
 	}
 }
