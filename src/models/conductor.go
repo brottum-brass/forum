@@ -1,6 +1,6 @@
 package models
 
-type ConductorItem struct {
+type Conductor struct {
 	ID        int    `json:"id"`
 	Name      string `json:"name"`
 	Title     string `json:"title"`

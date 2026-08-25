@@ -1,6 +1,6 @@
 package models
 
-type NotificationOptionItem struct {
+type Option struct {
 	Key   string `json:"key"`
 	Label string `json:"label"`
 }

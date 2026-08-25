@@ -2,7 +2,7 @@ package models
 
 import "time"
 
-type EventItem struct {
+type Event struct {
 	ID                int       `json:"id"`
 	Title             string    `json:"title"`
 	Description       string    `json:"description"`
@@ -14,23 +14,23 @@ type EventItem struct {
 	TicketLink        string    `json:"ticket_link,omitempty"`
 }
 
-func (e *EventItem) IsUpcomingEvent() bool {
+func (e *Event) IsUpcomingEvent() bool {
 	return e.StartDate.After(time.Now())
 }
 
-func (e *EventItem) FormattedStartDate() string {
+func (e *Event) FormattedStartDate() string {
 	return e.StartDate.Format("Jan 02")
 }
 
-func (e *EventItem) FormattedEndDate() string {
+func (e *Event) FormattedEndDate() string {
 	return e.EndDate.Format("Jan 02")
 }
 
-func (e *EventItem) FormattedTime() string {
+func (e *Event) FormattedTime() string {
 	return e.StartDate.Format("15:04")
 }
 
-func (e *EventItem) FormattedDateRange() string {
+func (e *Event) FormattedDateRange() string {
 	if !e.EndDate.IsZero() && e.EndDate.Day() != e.StartDate.Day() {
 		return e.FormattedStartDate() + " - " + e.FormattedEndDate()
 	}

@@ -1,6 +1,6 @@
 package models
 
-type EventSubscriptionRequestItem struct {
+type EventSubscriptionRequest struct {
 	Email       string   `json:"email"`
 	Preferences []string `json:"preferences"`
 }

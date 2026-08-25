@@ -1,6 +1,6 @@
 package models
 
-type CompetitionResultItem struct {
+type CompetitionResult struct {
 	ID        int    `json:"id"`
 	Year      int    `json:"year"`
 	Event     string `json:"event"`
