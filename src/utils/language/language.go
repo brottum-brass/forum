@@ -78,13 +78,14 @@ type About struct {
 }
 
 type Events struct {
-	PageTitle          string             `json:"page_title"`
-	SwipeHint          string             `json:"swipe_hint"`
-	NoEvents           string             `json:"no_events"`
-	GetTickets         string             `json:"get_tickets"`
-	TicketsUnavailable string             `json:"tickets_unavailable"`
-	FreeEntrance       string             `json:"free_entrance"`
-	EventItems         []models.EventItem `json:"event_items"`
+	PageTitle          string                       `json:"page_title"`
+	SwipeHint          string                       `json:"swipe_hint"`
+	NoEvents           string                       `json:"no_events"`
+	GetTickets         string                       `json:"get_tickets"`
+	TicketsUnavailable string                       `json:"tickets_unavailable"`
+	FreeEntrance       string                       `json:"free_entrance"`
+	EventItems         []models.EventItem           `json:"event_items"`
+	NotificationItem   models.EventNotificationItem `json:"notification_item"`
 }
 
 func (e *Events) GetEventByID(id int) (*models.EventItem, error) {

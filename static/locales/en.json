@@ -113,7 +113,34 @@
                 "location": "Brøttum Skole",
                 "is_free_entrance": true
             }
-        ]
+        ],
+        "notification_item": {
+            "title": "Get Notifications About Events",
+            "subtitle": "Receive email updates when we announce new events or tickets",
+            "email_label": "Email Address",
+            "email_placeholder": "your.email@domain.no",
+            "submit_button_label": "Subscribe",
+            "success_message": "Thank you! You are now registered for notifications.",
+            "error_message": "Sorry, an error occurred. Please try again.",
+            "notification_option_items": [
+                {
+                    "key": "new_events",
+                    "label": "New Events"
+                },
+                {
+                    "key": "event_updates",
+                    "label": "Event Updates"
+                },
+                {
+                    "key": "tickets",
+                    "label": "Ticket Announcements"
+                },
+                {
+                    "key": "reminders",
+                    "label": "Reminders Before Concert"
+                }
+            ]
+        }
     },
     "about": {
         "page_title": "About Brøttum Brass",

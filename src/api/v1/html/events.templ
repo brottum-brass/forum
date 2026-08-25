@@ -132,5 +132,7 @@ templ EventsView(events []models.EventItem, lang language.Content, theme theme.M
                 </div>
             </div>
         }
+
+		@EventNotificationBanner(lang, theme)
     </div>
 }

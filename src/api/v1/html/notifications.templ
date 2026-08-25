@@ -1,0 +1,88 @@
+package html
+
+import (
+	"github.com/brottum-brass/forum/src/utils/language"
+	"github.com/brottum-brass/forum/src/utils/theme"
+)
+
+templ EventNotificationForm(languageContent language.Content, theme theme.Mode) {
+	<form 
+		id="event-notification-form"
+		hx-post="/api/v1/events/subscribe" 
+		hx-target="#notification-form-container" 
+		hx-swap="outerHTML"
+		class="space-y-4"
+	>
+		<div class="space-y-1.5">
+			<label for="email" class={ "block text-xs font-bold uppercase tracking-wider", theme.PrimaryText }>
+				{ languageContent.Events.NotificationItem.EmailLabel }
+			</label>
+			<input 
+				type="email" 
+				id="email" 
+				name="email" 
+				required 
+				placeholder={ languageContent.Events.NotificationItem.EmailPlaceholder }
+				class={ "w-full px-4 py-2.5 rounded-xl border text-sm outline-none transition-all focus:ring-2 focus:ring-opacity-50", theme.SecondaryBackground, theme.PrimaryBorder, theme.PrimaryText }
+			/>
+		</div>
+
+		<div class="space-y-2">
+			<div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5">
+				for _, option := range languageContent.Events.NotificationItem.NotificationOptionItems {
+					<label class={ "flex items-center gap-2 p-2.5 rounded-xl border cursor-pointer text-xs font-semibold transition-all hover:bg-white/5", theme.PrimaryBorder, theme.SecondaryText }>
+						<input 
+							type="checkbox" 
+							name="preferences" 
+							value={ option.Key } 
+							checked
+							class="rounded text-amber-500 focus:ring-0 cursor-pointer shrink-0"
+						/>
+						<span class="whitespace-nowrap">{ option.Label }</span>
+					</label>
+				}
+			</div>
+		</div>
+
+		<button 
+			type="submit" 
+			class={ "w-full sm:w-auto px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider border transition-all hover:opacity-90 active:scale-95 shadow-sm", theme.AccentBackground, theme.AccentText, theme.AccentBorder }
+		>
+			{ languageContent.Events.NotificationItem.SubmitButtonLabel }
+		</button>
+	</form>
+}
+
+templ EventNotificationBanner(languageContent language.Content, theme theme.Mode) {
+	<div id="notification-form-container" class={ "p-6 rounded-2xl border backdrop-blur-md space-y-4", theme.SecondaryBackground, theme.PrimaryBorder }>
+		<div>
+			<h2 class={ "text-xl font-extrabold tracking-tight", theme.PrimaryText }>
+				{ languageContent.Events.NotificationItem.Title }
+			</h2>
+			<p class={ "text-xs font-medium opacity-80 mt-0.5", theme.SecondaryText }>
+				{ languageContent.Events.NotificationItem.Subtitle }
+			</p>
+		</div>
+
+		@EventNotificationForm(languageContent, theme)
+	</div>
+}
+
+templ EventNotificationSuccess(message string, theme theme.Mode) {
+	<div id="notification-form-container" class={ "p-6 rounded-2xl border backdrop-blur-md text-center space-y-2", theme.SecondaryBackground, theme.PrimaryBorder }>
+		<div class={ "inline-flex p-2 rounded-full border mb-1", theme.AccentBackground, theme.AccentBorder }>
+			<img src="/static/icons/arrow-right.svg" alt="Success" class={ "w-5 h-5 " + theme.IconFilter }/>
+		</div>
+		<p class={ "text-sm font-bold tracking-tight", theme.PrimaryText }>
+			{ message }
+		</p>
+	</div>
+}
+
+templ EventNotificationError(message string, theme theme.Mode) {
+	<div id="notification-form-container" class={ "p-6 rounded-2xl border backdrop-blur-md text-center space-y-2", theme.SecondaryBackground, theme.PrimaryBorder }>
+		<p class={ "text-sm font-bold tracking-tight text-red-500" }>
+			{ message }
+		</p>
+	</div>
+}

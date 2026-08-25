@@ -880,6 +880,10 @@ func EventsView(events []models.EventItem, lang language.Content, theme theme.Mo
 				return templ_7745c5c3_Err
 			}
 		}
+		templ_7745c5c3_Err = EventNotificationBanner(lang, theme).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
 		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 68, "</div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
