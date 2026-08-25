@@ -114,7 +114,7 @@
                 "is_free_entrance": true
             }
         ],
-        "notification_item": {
+        "notification": {
             "title": "Få varsel om arrangementer",
             "subtitle": "Motta e-post når vi legger ut nye arrangementer eller billetter",
             "email_label": "E-postadresse",
@@ -122,7 +122,7 @@
             "submit_button_label": "Abonner",
             "success_message": "Takk! Du er nå registrert for varslinger.",
             "error_message": "Beklager, det oppstod en feil. Vennligst prøv igjen.",
-            "notification_option_items": [
+            "options": [
                 {
                     "key": "new_events",
                     "label": "Nye arrangementer"
@@ -167,7 +167,7 @@
             "title_singular": "Møt Vår Dirigent",
             "title_plural": "Møt Våre Dirigenter",
             "vision_label": "Dirigentens visjon:",
-            "conductor_items": [
+            "conductors": [
                 {
                     "id": 1,
                     "name": "Kari Nordmann",
@@ -193,7 +193,7 @@
             "piece_label": "Stykke",
             "conductor_label": "Dirigent",
             "position_label": "Plassering",
-            "competition_result_items": [
+            "competition_results": [
                 {
                     "id": 1,
                     "year": 2026,
@@ -262,7 +262,7 @@
             "title": "Styret i Brøttum Brass",
             "subtitle": "Oversikt over styrets medlemmer og roller",
             "no_board_members": "Ingen styremedlemmer registrert.",
-            "board_member_items": [
+            "board_members": [
                 {
                     "id": 1,
                     "name": "Kari Nordmann",
@@ -276,6 +276,40 @@
                     "name": "Ola Nordmann",
                     "role": "Kasserer",
                     "email": "kasserer@brottum-brass.no"
+                }
+            ]
+        },
+        "inquiry_form": {
+            "title": "Samarbeid & Henvendelser",
+            "subtitle": "Ønsker du å booke oss, sponse eller samarbeide om en konsert?",
+            "name_label": "Ditt navn / Organisasjon",
+            "name_placeholder": "Navn eller firmanavn",
+            "email_label": "E-postadresse",
+            "email_placeholder": "din.epost@domene.no",
+            "phone_label": "Telefonnummer",
+            "phone_placeholder": "+47 900 00 000",
+            "type_label": "Hva gjelder henvendelsen?",
+            "message_label": "Melding",
+            "message_placeholder": "Fortell oss litt om prosjektet eller hva dere ønsker...",
+            "submit_button_label": "Send Henvendelse",
+            "success_message": "Takk for henvendelsen! Vi svarer så fort vi kan.",
+            "error_message": "Beklager, det oppstod en feil. Vennligst prøv igjen.",
+            "options": [
+                {
+                    "key": "general",
+                    "label": "Generell henvendelse"
+                },
+                {
+                    "key": "cooperation",
+                    "label": "Konsert / Samarbeid"
+                },
+                {
+                    "key": "sponsorship",
+                    "label": "Sponsing & Støtte"
+                },
+                {
+                    "key": "booking",
+                    "label": "Booking / Oppdrag"
                 }
             ]
         }

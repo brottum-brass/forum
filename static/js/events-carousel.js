@@ -25,6 +25,12 @@ function initEventsCarousel() {
         });
     }
 
+    wrappers.forEach((wrapper) => {
+        wrapper.addEventListener('click', () => {
+            wrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        });
+    });
+
     const activeClasses = ['opacity-100', 'scale-100', 'ring-2', 'ring-amber-400', 'shadow-2xl', 'z-10'];
     const inactiveClasses = ['opacity-40', 'scale-90'];
 
@@ -70,7 +76,8 @@ function initEventsCarousel() {
     });
 
     window.addEventListener('resize', updateActiveCard);
-    updateActiveCard();
+
+    requestAnimationFrame(updateActiveCard);
 }
 
 if (typeof htmx !== 'undefined') {
