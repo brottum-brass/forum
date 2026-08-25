@@ -6,7 +6,7 @@ import (
     "github.com/brottum-brass/forum/src/utils/theme"
 )
 
-templ MemberAccordionCard(member models.MemberItem, theme theme.Mode) {
+templ MemberAccordionCard(member models.Member, theme theme.Mode) {
     <div 
         tabindex="0"
         style="width: 76px; min-width: 76px; height: 360px; transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);"
@@ -81,7 +81,7 @@ templ MemberAccordionCard(member models.MemberItem, theme theme.Mode) {
     </div>
 }
 
-templ MembersView(members []models.MemberItem, lang language.Content, theme theme.Mode) {
+templ MembersView(members []models.Member, lang language.Content, theme theme.Mode) {
     <div class="container mx-auto px-4 py-8 max-w-6xl space-y-8">
         @PageTitle(lang.Members.PageTitle, lang.Members.Subtitle, theme)
 

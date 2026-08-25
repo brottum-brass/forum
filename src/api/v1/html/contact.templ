@@ -6,7 +6,7 @@ import (
 	"github.com/brottum-brass/forum/src/utils/theme"
 )
 
-templ BoardMemberCard(member models.BoardMemberItem, theme theme.Mode) {
+templ BoardMemberCard(member models.BoardMember, theme theme.Mode) {
 	<div class={ "flex flex-col sm:flex-row gap-4 items-center sm:items-start p-5 rounded-2xl border backdrop-blur-md transition-all duration-200 hover:shadow-md", theme.SecondaryBackground, theme.PrimaryBorder }>
 		if member.ImagePath != "" {
 			<div class="w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden shrink-0 border shadow-sm">
@@ -65,7 +65,7 @@ templ BoardSection(board language.BoardSection, theme theme.Mode) {
 			}
 		</div>
 
-		if len(board.BoardMemberItems) == 0 {
+		if len(board.BoardMembers) == 0 {
 			<div class={ "text-center py-8 rounded-xl border border-dashed", theme.PrimaryBorder }>
 				<p class={ "text-sm font-medium", theme.SecondaryText }>
 					{ board.NoBoardMembers }
@@ -73,7 +73,7 @@ templ BoardSection(board language.BoardSection, theme theme.Mode) {
 			</div>
 		} else {
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-				for _, member := range board.BoardMemberItems {
+				for _, member := range board.BoardMembers {
 					@BoardMemberCard(member, theme)
 				}
 			</div>
@@ -85,5 +85,6 @@ templ ContactView(languageContent language.Content, theme theme.Mode) {
     <div class="container mx-auto px-4 py-8 max-w-6xl space-y-8">
         @PageTitle(languageContent.Contact.PageTitle, languageContent.Contact.Subtitle, theme)
         @BoardSection(languageContent.Contact.BoardSection, theme)
+		@ContactInquirySection(languageContent.Contact.InquiryForm, theme)
     </div>
 }

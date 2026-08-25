@@ -61,34 +61,34 @@ type About struct {
 		Content string `json:"content"`
 	} `json:"mission"`
 	Conductor struct {
-		TitleSingular  string                 `json:"title_singular"`
-		TitlePlural    string                 `json:"title_plural"`
-		VisionLabel    string                 `json:"vision_label"`
-		ConductorItems []models.ConductorItem `json:"conductor_items"`
+		TitleSingular string             `json:"title_singular"`
+		TitlePlural   string             `json:"title_plural"`
+		VisionLabel   string             `json:"vision_label"`
+		Conductors    []models.Conductor `json:"conductors"`
 	} `json:"conductor"`
 	Competition struct {
-		Title                  string                         `json:"title"`
-		YearLabel              string                         `json:"year_label"`
-		EventLabel             string                         `json:"event_label"`
-		PieceLabel             string                         `json:"piece_label"`
-		ConductorLabel         string                         `json:"conductor_label"`
-		PositionLabel          string                         `json:"position_label"`
-		CompetitionResultItems []models.CompetitionResultItem `json:"competition_result_items"`
+		Title              string                     `json:"title"`
+		YearLabel          string                     `json:"year_label"`
+		EventLabel         string                     `json:"event_label"`
+		PieceLabel         string                     `json:"piece_label"`
+		ConductorLabel     string                     `json:"conductor_label"`
+		PositionLabel      string                     `json:"position_label"`
+		CompetitionResults []models.CompetitionResult `json:"competition_results"`
 	} `json:"competition"`
 }
 
 type Events struct {
-	PageTitle          string                       `json:"page_title"`
-	SwipeHint          string                       `json:"swipe_hint"`
-	NoEvents           string                       `json:"no_events"`
-	GetTickets         string                       `json:"get_tickets"`
-	TicketsUnavailable string                       `json:"tickets_unavailable"`
-	FreeEntrance       string                       `json:"free_entrance"`
-	EventItems         []models.EventItem           `json:"event_items"`
-	NotificationItem   models.EventNotificationItem `json:"notification_item"`
+	PageTitle          string                   `json:"page_title"`
+	SwipeHint          string                   `json:"swipe_hint"`
+	NoEvents           string                   `json:"no_events"`
+	GetTickets         string                   `json:"get_tickets"`
+	TicketsUnavailable string                   `json:"tickets_unavailable"`
+	FreeEntrance       string                   `json:"free_entrance"`
+	EventItems         []models.Event           `json:"event_items"`
+	Notification       models.EventNotification `json:"notification"`
 }
 
-func (e *Events) GetEventByID(id int) (*models.EventItem, error) {
+func (e *Events) GetEventByID(id int) (*models.Event, error) {
 	for _, event := range e.EventItems {
 		if event.ID == id {
 			return &event, nil
@@ -99,13 +99,13 @@ func (e *Events) GetEventByID(id int) (*models.EventItem, error) {
 }
 
 type Members struct {
-	PageTitle   string              `json:"page_title"`
-	Subtitle    string              `json:"subtitle"`
-	NoMembers   string              `json:"no_members"`
-	MemberItems []models.MemberItem `json:"member_items"`
+	PageTitle   string          `json:"page_title"`
+	Subtitle    string          `json:"subtitle"`
+	NoMembers   string          `json:"no_members"`
+	MemberItems []models.Member `json:"member_items"`
 }
 
-func (m *Members) GetMemberByID(id int) (*models.MemberItem, error) {
+func (m *Members) GetMemberByID(id int) (*models.Member, error) {
 	for _, member := range m.MemberItems {
 		if member.ID == id {
 			return &member, nil
@@ -116,14 +116,15 @@ func (m *Members) GetMemberByID(id int) (*models.MemberItem, error) {
 }
 
 type Contact struct {
-	PageTitle    string       `json:"page_title"`
-	Subtitle     string       `json:"subtitle"`
-	BoardSection BoardSection `json:"board_section"`
+	PageTitle    string             `json:"page_title"`
+	Subtitle     string             `json:"subtitle"`
+	BoardSection BoardSection       `json:"board_section"`
+	InquiryForm  models.InquiryForm `json:"inquiry_form"`
 }
 
 type BoardSection struct {
-	Title            string                   `json:"title"`
-	Subtitle         string                   `json:"subtitle"`
-	NoBoardMembers   string                   `json:"no_board_members"`
-	BoardMemberItems []models.BoardMemberItem `json:"board_member_items"`
+	Title          string               `json:"title"`
+	Subtitle       string               `json:"subtitle"`
+	NoBoardMembers string               `json:"no_board_members"`
+	BoardMembers   []models.BoardMember `json:"board_members"`
 }

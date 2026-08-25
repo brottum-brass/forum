@@ -14,7 +14,7 @@ import (
 	"github.com/brottum-brass/forum/src/utils/theme"
 )
 
-func BoardMemberCard(member models.BoardMemberItem, theme theme.Mode) templ.Component {
+func BoardMemberCard(member models.BoardMember, theme theme.Mode) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -474,7 +474,7 @@ func BoardSection(board language.BoardSection, theme theme.Mode) templ.Component
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		if len(board.BoardMemberItems) == 0 {
+		if len(board.BoardMembers) == 0 {
 			var templ_7745c5c3_Var36 = []any{"text-center py-8 rounded-xl border border-dashed", theme.PrimaryBorder}
 			templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var36...)
 			if templ_7745c5c3_Err != nil {
@@ -537,7 +537,7 @@ func BoardSection(board language.BoardSection, theme theme.Mode) templ.Component
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			for _, member := range board.BoardMemberItems {
+			for _, member := range board.BoardMembers {
 				templ_7745c5c3_Err = BoardMemberCard(member, theme).Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
@@ -586,6 +586,10 @@ func ContactView(languageContent language.Content, theme theme.Mode) templ.Compo
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = BoardSection(languageContent.Contact.BoardSection, theme).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = ContactInquirySection(languageContent.Contact.InquiryForm, theme).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

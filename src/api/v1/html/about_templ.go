@@ -133,7 +133,7 @@ func StatCard(value string, label string, theme theme.Mode) templ.Component {
 	})
 }
 
-func ConductorCard(conductor models.ConductorItem, theme theme.Mode) templ.Component {
+func ConductorCard(conductor models.Conductor, theme theme.Mode) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -760,7 +760,7 @@ func CompetitionTable(competition language.About, theme theme.Mode) templ.Compon
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		for _, resultItem := range competition.Competition.CompetitionResultItems {
+		for _, resultItem := range competition.Competition.CompetitionResults {
 			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 58, "<tr class=\"hover:bg-white/5 transition-colors\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
@@ -1062,7 +1062,7 @@ func AboutView(languageContent language.Content, theme theme.Mode) templ.Compone
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		if len(languageContent.About.Conductor.ConductorItems) > 1 {
+		if len(languageContent.About.Conductor.Conductors) > 1 {
 			var templ_7745c5c3_Var80 string
 			templ_7745c5c3_Var80, templ_7745c5c3_Err = templ.JoinStringErrs(languageContent.About.Conductor.TitlePlural)
 			if templ_7745c5c3_Err != nil {
@@ -1087,7 +1087,7 @@ func AboutView(languageContent language.Content, theme theme.Mode) templ.Compone
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		for _, conductor := range languageContent.About.Conductor.ConductorItems {
+		for _, conductor := range languageContent.About.Conductor.Conductors {
 			templ_7745c5c3_Err = ConductorCard(conductor, theme).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err

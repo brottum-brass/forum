@@ -34,7 +34,7 @@ func EventNotificationForm(languageContent language.Content, theme theme.Mode) t
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<form id=\"event-notification-form\" hx-post=\"/api/v1/events/subscribe\" hx-target=\"#notification-form-container\" hx-swap=\"outerHTML\" class=\"space-y-4\"><div class=\"space-y-1.5\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<form id=\"event-notification-form\" hx-post=\"/events/subscribe\" hx-target=\"#notification-form-container\" hx-swap=\"outerHTML\" class=\"space-y-4\"><div class=\"space-y-1.5\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -61,9 +61,9 @@ func EventNotificationForm(languageContent language.Content, theme theme.Mode) t
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var4 string
-		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(languageContent.Events.NotificationItem.EmailLabel)
+		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(languageContent.Events.Notification.EmailLabel)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 18, Col: 56}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 18, Col: 52}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {
@@ -83,9 +83,9 @@ func EventNotificationForm(languageContent language.Content, theme theme.Mode) t
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var6 string
-		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.ResolveAttributeValue(languageContent.Events.NotificationItem.EmailPlaceholder)
+		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.ResolveAttributeValue(languageContent.Events.Notification.EmailPlaceholder)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 25, Col: 74}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 25, Col: 70}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var6)
 		if templ_7745c5c3_Err != nil {
@@ -108,7 +108,7 @@ func EventNotificationForm(languageContent language.Content, theme theme.Mode) t
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		for _, option := range languageContent.Events.NotificationItem.NotificationOptionItems {
+		for _, option := range languageContent.Events.Notification.Options {
 			var templ_7745c5c3_Var8 = []any{"flex items-center gap-2 p-2.5 rounded-xl border cursor-pointer text-xs font-semibold transition-all hover:bg-white/5", theme.PrimaryBorder, theme.SecondaryText}
 			templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var8...)
 			if templ_7745c5c3_Err != nil {
@@ -185,9 +185,9 @@ func EventNotificationForm(languageContent language.Content, theme theme.Mode) t
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var14 string
-		templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(languageContent.Events.NotificationItem.SubmitButtonLabel)
+		templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(languageContent.Events.Notification.SubmitButtonLabel)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 51, Col: 62}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 51, Col: 58}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 		if templ_7745c5c3_Err != nil {
@@ -267,9 +267,9 @@ func EventNotificationBanner(languageContent language.Content, theme theme.Mode)
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var20 string
-		templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.JoinStringErrs(languageContent.Events.NotificationItem.Title)
+		templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.JoinStringErrs(languageContent.Events.Notification.Title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 60, Col: 51}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 60, Col: 47}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var20))
 		if templ_7745c5c3_Err != nil {
@@ -302,9 +302,9 @@ func EventNotificationBanner(languageContent language.Content, theme theme.Mode)
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var23 string
-		templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinStringErrs(languageContent.Events.NotificationItem.Subtitle)
+		templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinStringErrs(languageContent.Events.Notification.Subtitle)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 63, Col: 54}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 63, Col: 50}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var23))
 		if templ_7745c5c3_Err != nil {

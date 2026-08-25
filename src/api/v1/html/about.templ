@@ -15,7 +15,7 @@ templ StatCard(value string, label string, theme theme.Mode) {
 	</div>
 }
 
-templ ConductorCard(conductor models.ConductorItem, theme theme.Mode) {
+templ ConductorCard(conductor models.Conductor, theme theme.Mode) {
 	<div class={ "flex flex-col md:flex-row gap-6 items-center md:items-start p-4 rounded-xl border", theme.SecondaryBackground, theme.PrimaryBorder }>
 		if conductor.ImagePath != "" {
 			<div class="w-28 h-28 sm:w-36 sm:h-36 rounded-xl overflow-hidden shrink-0 border shadow-md">
@@ -81,7 +81,7 @@ templ CompetitionTable(competition language.About, theme theme.Mode) {
 					</tr>
 				</thead>
 				<tbody class={ "divide-y", theme.PrimaryBorder }>
-					for _, resultItem := range competition.Competition.CompetitionResultItems {
+					for _, resultItem := range competition.Competition.CompetitionResults {
 						<tr class="hover:bg-white/5 transition-colors">
 							<td class={ "py-3 px-3 font-bold whitespace-nowrap", theme.PrimaryText }>
 								{ fmt.Sprintf("%d", resultItem.Year) }
@@ -127,13 +127,13 @@ templ AboutView(languageContent language.Content, theme theme.Mode) {
 
 		<div class={ "p-6 rounded-2xl border backdrop-blur-md space-y-4", theme.SecondaryBackground, theme.PrimaryBorder }>
 			<h2 class={ "text-xl font-extrabold tracking-tight", theme.PrimaryText }>
-                if len(languageContent.About.Conductor.ConductorItems) > 1 {
+                if len(languageContent.About.Conductor.Conductors) > 1 {
                     { languageContent.About.Conductor.TitlePlural }
                 } else {
                     { languageContent.About.Conductor.TitleSingular }
                 }
 			</h2>
-			for _, conductor := range languageContent.About.Conductor.ConductorItems {
+			for _, conductor := range languageContent.About.Conductor.Conductors {
 				@ConductorCard(conductor, theme)
 			}
 		</div>

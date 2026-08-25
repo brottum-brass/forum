@@ -7,7 +7,7 @@ import (
     "github.com/brottum-brass/forum/src/utils/theme"
 )
 
-templ EventBadge(event models.EventItem, theme theme.Mode) {
+templ EventBadge(event models.Event, theme theme.Mode) {
     <div class="flex items-center justify-between gap-2">
         <div class={ "inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border " + theme.AccentBackground + " " + theme.AccentBorder }>
             <span class={ "text-xs font-extrabold uppercase tracking-wide " + theme.AccentText }>
@@ -20,7 +20,7 @@ templ EventBadge(event models.EventItem, theme theme.Mode) {
     </div>
 }
 
-templ EventDetails(event models.EventItem, theme theme.Mode) {
+templ EventDetails(event models.Event, theme theme.Mode) {
     <div class={ "pt-3 space-y-2 border-t " + theme.PrimaryBorder }>
         <div class={ "flex items-center gap-2 text-xs font-medium " + theme.SecondaryText }>
             <div class={ "p-1 rounded-md shrink-0 " + theme.AccentBackground + " " + theme.AccentText }>
@@ -40,7 +40,7 @@ templ EventDetails(event models.EventItem, theme theme.Mode) {
     </div>
 }
 
-templ EventTicketButton(event models.EventItem, lang language.Content, theme theme.Mode) {
+templ EventTicketButton(event models.Event, lang language.Content, theme theme.Mode) {
     <div>
         if event.IsFreeEntrance {
             <div class={ "w-full text-center py-2.5 px-4 rounded-xl text-xs font-semibold opacity-70 border " + theme.SecondaryBackground + " " + theme.SecondaryText + " " + theme.PrimaryBorder }>
@@ -84,9 +84,9 @@ templ CarouselNavControls(theme theme.Mode) {
     </button>
 }
 
-templ EventCard(event models.EventItem, index int, lang language.Content, theme theme.Mode) {
+templ EventCard(event models.Event, index int, lang language.Content, theme theme.Mode) {
     <div id={ fmt.Sprintf("event-card-%d", index) } class="event-card-wrapper snap-center shrink-0 w-[82vw] max-w-[340px] sm:max-w-[400px] py-6 scroll-mt-6">
-        <div class={ "event-card rounded-3xl p-6 sm:p-7 border flex flex-col justify-between min-h-[420px] transition-all duration-300 transform " + theme.SecondaryBackground + " " + theme.PrimaryBorder }>
+        <div class={ "event-card rounded-3xl p-6 sm:p-7 border flex flex-col justify-between min-h-[420px] transition-all duration-300 transform opacity-40 scale-90 " + theme.SecondaryBackground + " " + theme.PrimaryBorder }>
             <div class="space-y-4">
                 @EventBadge(event, theme)
 
@@ -108,8 +108,8 @@ templ EventCard(event models.EventItem, index int, lang language.Content, theme 
     </div>
 }
 
-templ EventsView(events []models.EventItem, lang language.Content, theme theme.Mode) {
-    <div class="container mx-auto px-4 py-8 max-w-6xl">
+templ EventsView(events []models.Event, lang language.Content, theme theme.Mode) {
+    <div class="container mx-auto px-4 py-8 max-w-6xl space-y-8">
         @PageTitle(lang.Events.PageTitle, lang.Events.SwipeHint, theme)
 
         if len(events) == 0 {
@@ -133,6 +133,6 @@ templ EventsView(events []models.EventItem, lang language.Content, theme theme.M
             </div>
         }
 
-		@EventNotificationBanner(lang, theme)
+        @EventNotificationBanner(lang, theme)
     </div>
 }

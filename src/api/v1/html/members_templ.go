@@ -14,7 +14,7 @@ import (
 	"github.com/brottum-brass/forum/src/utils/theme"
 )
 
-func MemberAccordionCard(member models.MemberItem, theme theme.Mode) templ.Component {
+func MemberAccordionCard(member models.Member, theme theme.Mode) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -449,7 +449,7 @@ func MemberAccordionCard(member models.MemberItem, theme theme.Mode) templ.Compo
 	})
 }
 
-func MembersView(members []models.MemberItem, lang language.Content, theme theme.Mode) templ.Component {
+func MembersView(members []models.Member, lang language.Content, theme theme.Mode) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {

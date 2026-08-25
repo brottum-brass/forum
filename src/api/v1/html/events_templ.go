@@ -15,7 +15,7 @@ import (
 	"github.com/brottum-brass/forum/src/utils/theme"
 )
 
-func EventBadge(event models.EventItem, theme theme.Mode) templ.Component {
+func EventBadge(event models.Event, theme theme.Mode) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -136,7 +136,7 @@ func EventBadge(event models.EventItem, theme theme.Mode) templ.Component {
 	})
 }
 
-func EventDetails(event models.EventItem, theme theme.Mode) templ.Component {
+func EventDetails(event models.Event, theme theme.Mode) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -347,7 +347,7 @@ func EventDetails(event models.EventItem, theme theme.Mode) templ.Component {
 	})
 }
 
-func EventTicketButton(event models.EventItem, lang language.Content, theme theme.Mode) templ.Component {
+func EventTicketButton(event models.Event, lang language.Content, theme theme.Mode) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -615,7 +615,7 @@ func CarouselNavControls(theme theme.Mode) templ.Component {
 	})
 }
 
-func EventCard(event models.EventItem, index int, lang language.Content, theme theme.Mode) templ.Component {
+func EventCard(event models.Event, index int, lang language.Content, theme theme.Mode) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -653,7 +653,7 @@ func EventCard(event models.EventItem, index int, lang language.Content, theme t
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var49 = []any{"event-card rounded-3xl p-6 sm:p-7 border flex flex-col justify-between min-h-[420px] transition-all duration-300 transform " + theme.SecondaryBackground + " " + theme.PrimaryBorder}
+		var templ_7745c5c3_Var49 = []any{"event-card rounded-3xl p-6 sm:p-7 border flex flex-col justify-between min-h-[420px] transition-all duration-300 transform opacity-40 scale-90 " + theme.SecondaryBackground + " " + theme.PrimaryBorder}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var49...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -769,7 +769,7 @@ func EventCard(event models.EventItem, index int, lang language.Content, theme t
 	})
 }
 
-func EventsView(events []models.EventItem, lang language.Content, theme theme.Mode) templ.Component {
+func EventsView(events []models.Event, lang language.Content, theme theme.Mode) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -790,7 +790,7 @@ func EventsView(events []models.EventItem, lang language.Content, theme theme.Mo
 			templ_7745c5c3_Var57 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 59, "<div class=\"container mx-auto px-4 py-8 max-w-6xl\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 59, "<div class=\"container mx-auto px-4 py-8 max-w-6xl space-y-8\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
