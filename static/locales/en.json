@@ -253,7 +253,34 @@
                 "instrument": "Bass Trombone",
                 "favorite_piece": "Blue Bells of Scotland"
             }
-        ]
+        ],
+        "application_form": {
+            "title": "Join the Band!",
+            "subtitle": "Do you play a brass instrument and want to play with us? Send us an application!",
+            "name_label": "Your Name",
+            "name_placeholder": "Ola Nordmann",
+            "email_label": "Email Address",
+            "email_placeholder": "your.email@domain.no",
+            "phone_label": "Phone Number",
+            "phone_placeholder": "+47 900 00 000",
+            "birth_year_label": "Birth Year",
+            "birth_year_placeholder": "1995",
+            "instrument_label": "Main Instrument",
+            "instrument_placeholder": "e.g., Cornet, Alto Horn, Tuba",
+            "preferred_part_label": "Preferred Part",
+            "preferred_part_placeholder": "e.g., 1st Cornet, Solo Horn, Tutti Euphonium",
+            "experience_label": "Experience / Background",
+            "experience_placeholder": "How long have you been playing, and which bands/orchestras have you played in before?",
+            "reference_name_label": "Reference Name (Optional)",
+            "reference_name_placeholder": "Someone who can provide a recommendation",
+            "reference_phone_label": "Reference Phone",
+            "reference_phone_placeholder": "+47 900 00 000",
+            "notes_label": "Additional Information / Message",
+            "notes_placeholder": "Is there anything else you would like us to know?",
+            "submit_button_label": "Send Application",
+            "success_message": "Thank you for your application! We'll get in touch with you as soon as possible.",
+            "error_message": "Sorry, an error occurred. Please try again."
+        }
     },
     "contact": {
         "page_title": "Contact Us",

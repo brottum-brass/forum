@@ -253,7 +253,34 @@
                 "instrument": "Bass Trombone",
                 "favorite_piece": "Blue Bells of Scotland"
             }
-        ]
+        ],
+        "application_form": {
+            "title": "Bli med i korpset!",
+            "subtitle": "Spiller du et korpsinstrument og ønsker å spille sammen med oss? Send oss en søknad!",
+            "name_label": "Ditt Navn",
+            "name_placeholder": "Ola Nordmann",
+            "email_label": "E-postadresse",
+            "email_placeholder": "din.epost@domene.no",
+            "phone_label": "Telefonnummer",
+            "phone_placeholder": "+47 900 00 000",
+            "birth_year_label": "Fødselsår",
+            "birth_year_placeholder": "1995",
+            "instrument_label": "Hovedinstrument",
+            "instrument_placeholder": "f.eks. Kornett, Althorn, Tuba",
+            "preferred_part_label": "Ønsket stemme / plassering",
+            "preferred_part_placeholder": "f.eks. 1. kornett, Solo althorn, Solo euphonium",
+            "experience_label": "Erfaring / Bakgrunn",
+            "experience_placeholder": "Hvor lenge har du spilt, og hvilke korps/orkestre har du spilt i tidligere?",
+            "reference_name_label": "Referanse Navn (Valgfritt)",
+            "reference_name_placeholder": "Noen som kan gi en anbefaling",
+            "reference_phone_label": "Referanse telefon",
+            "reference_phone_placeholder": "+47 900 00 000",
+            "notes_label": "Tilleggsinformasjon / Melding",
+            "notes_placeholder": "Annet du vil at vi skal vite?",
+            "submit_button_label": "Send Søknad",
+            "success_message": "Takk for søknaden! Vi tar kontakt med deg så snart som mulig.",
+            "error_message": "Beklager, det oppstod en feil. Vennligst prøv igjen."
+        }
     },
     "contact": {
         "page_title": "Kontakt Oss",

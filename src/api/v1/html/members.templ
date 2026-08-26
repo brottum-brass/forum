@@ -92,5 +92,7 @@ templ MembersView(members []models.Member, lang language.Content, theme theme.Mo
                 }
             </div>
         </div>
+        
+        @MemberApplicationSection(lang.Members.ApplicationForm, theme)
     </div>
 }

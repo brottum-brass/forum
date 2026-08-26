@@ -99,10 +99,11 @@ func (e *Events) GetEventByID(id int) (*models.Event, error) {
 }
 
 type Members struct {
-	PageTitle   string          `json:"page_title"`
-	Subtitle    string          `json:"subtitle"`
-	NoMembers   string          `json:"no_members"`
-	MemberItems []models.Member `json:"member_items"`
+	PageTitle       string                 `json:"page_title"`
+	Subtitle        string                 `json:"subtitle"`
+	NoMembers       string                 `json:"no_members"`
+	MemberItems     []models.Member        `json:"member_items"`
+	ApplicationForm models.ApplicationForm `json:"application_form"`
 }
 
 func (m *Members) GetMemberByID(id int) (*models.Member, error) {
