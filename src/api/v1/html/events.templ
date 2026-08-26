@@ -133,6 +133,6 @@ templ EventsView(events []models.Event, lang language.Content, theme theme.Mode)
             </div>
         }
 
-        @EventNotificationBanner(lang, theme)
+        @EventNotificationBanner(lang.Common.PrivacyNote, lang.Events.Notification, theme)
     </div>
 }

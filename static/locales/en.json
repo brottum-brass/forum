@@ -2,7 +2,8 @@
     "common": {
         "language": "en",
         "title": "Brøttum Brass",
-        "name": "Brøttum Brass"
+        "name": "Brøttum Brass",
+        "privacy_note": "The information you provide is only used to process your inquiry. Personal data is deleted within 30 days of processing."
     },
     "header": {
         "home": "Home",

@@ -13,7 +13,7 @@ import (
 	"github.com/brottum-brass/forum/src/utils/theme"
 )
 
-func ContactInquiryForm(form models.InquiryForm, theme theme.Mode) templ.Component {
+func ContactInquiryForm(privacyNote string, form models.InquiryForm, theme theme.Mode) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -407,7 +407,11 @@ func ContactInquiryForm(form models.InquiryForm, theme theme.Mode) templ.Compone
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 34, "\"></textarea></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 34, "\"></textarea></div><div class=\"space-y-2 pt-1\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = PrivacyDisclaimer(privacyNote, theme).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -436,13 +440,13 @@ func ContactInquiryForm(form models.InquiryForm, theme theme.Mode) templ.Compone
 		var templ_7745c5c3_Var35 string
 		templ_7745c5c3_Var35, templ_7745c5c3_Err = templ.JoinStringErrs(form.SubmitButtonLabel)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/contact_inquiry.templ`, Line: 94, Col: 27}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/contact_inquiry.templ`, Line: 97, Col: 28}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var35))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 37, "</button></form>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 37, "</button></div></form>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -450,7 +454,7 @@ func ContactInquiryForm(form models.InquiryForm, theme theme.Mode) templ.Compone
 	})
 }
 
-func ContactInquirySection(form models.InquiryForm, theme theme.Mode) templ.Component {
+func ContactInquirySection(privacyNote string, form models.InquiryForm, theme theme.Mode) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -518,7 +522,7 @@ func ContactInquirySection(form models.InquiryForm, theme theme.Mode) templ.Comp
 		var templ_7745c5c3_Var41 string
 		templ_7745c5c3_Var41, templ_7745c5c3_Err = templ.JoinStringErrs(form.Title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/contact_inquiry.templ`, Line: 103, Col: 16}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/contact_inquiry.templ`, Line: 107, Col: 16}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var41))
 		if templ_7745c5c3_Err != nil {
@@ -553,7 +557,7 @@ func ContactInquirySection(form models.InquiryForm, theme theme.Mode) templ.Comp
 		var templ_7745c5c3_Var44 string
 		templ_7745c5c3_Var44, templ_7745c5c3_Err = templ.JoinStringErrs(form.Subtitle)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/contact_inquiry.templ`, Line: 106, Col: 19}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/contact_inquiry.templ`, Line: 110, Col: 19}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var44))
 		if templ_7745c5c3_Err != nil {
@@ -563,7 +567,7 @@ func ContactInquirySection(form models.InquiryForm, theme theme.Mode) templ.Comp
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = ContactInquiryForm(form, theme).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = ContactInquiryForm(privacyNote, form, theme).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -687,7 +691,7 @@ func ContactInquirySuccess(message string, theme theme.Mode) templ.Component {
 		var templ_7745c5c3_Var54 string
 		templ_7745c5c3_Var54, templ_7745c5c3_Err = templ.JoinStringErrs(message)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/contact_inquiry.templ`, Line: 120, Col: 12}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/contact_inquiry.templ`, Line: 124, Col: 12}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var54))
 		if templ_7745c5c3_Err != nil {
@@ -747,7 +751,7 @@ func ContactInquiryError(message string, theme theme.Mode) templ.Component {
 		var templ_7745c5c3_Var58 string
 		templ_7745c5c3_Var58, templ_7745c5c3_Err = templ.JoinStringErrs(message)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/contact_inquiry.templ`, Line: 128, Col: 12}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/contact_inquiry.templ`, Line: 132, Col: 12}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var58))
 		if templ_7745c5c3_Err != nil {

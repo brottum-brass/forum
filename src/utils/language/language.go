@@ -14,9 +14,10 @@ type Language interface {
 
 type Content struct {
 	Common struct {
-		Language string `json:"language"`
-		Title    string `json:"title"`
-		Name     string `json:"name"`
+		Language    string `json:"language"`
+		Title       string `json:"title"`
+		Name        string `json:"name"`
+		PrivacyNote string `json:"privacy_note"`
 	} `json:"common"`
 	Header struct {
 		Home    string `json:"home"`

@@ -9,11 +9,11 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 import (
-	"github.com/brottum-brass/forum/src/utils/language"
+	"github.com/brottum-brass/forum/src/models"
 	"github.com/brottum-brass/forum/src/utils/theme"
 )
 
-func EventNotificationForm(languageContent language.Content, theme theme.Mode) templ.Component {
+func EventNotificationForm(privacyNote string, form models.EventNotification, theme theme.Mode) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -61,9 +61,9 @@ func EventNotificationForm(languageContent language.Content, theme theme.Mode) t
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var4 string
-		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(languageContent.Events.Notification.EmailLabel)
+		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(form.EmailLabel)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 18, Col: 52}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 18, Col: 21}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {
@@ -83,9 +83,9 @@ func EventNotificationForm(languageContent language.Content, theme theme.Mode) t
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var6 string
-		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.ResolveAttributeValue(languageContent.Events.Notification.EmailPlaceholder)
+		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.ResolveAttributeValue(form.EmailPlaceholder)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 25, Col: 70}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 25, Col: 39}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var6)
 		if templ_7745c5c3_Err != nil {
@@ -108,7 +108,7 @@ func EventNotificationForm(languageContent language.Content, theme theme.Mode) t
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		for _, option := range languageContent.Events.Notification.Options {
+		for _, option := range form.Options {
 			var templ_7745c5c3_Var8 = []any{"flex items-center gap-2 p-2.5 rounded-xl border cursor-pointer text-xs font-semibold transition-all hover:bg-white/5", theme.PrimaryBorder, theme.SecondaryText}
 			templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var8...)
 			if templ_7745c5c3_Err != nil {
@@ -158,7 +158,11 @@ func EventNotificationForm(languageContent language.Content, theme theme.Mode) t
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</div></div><div class=\"space-y-2 pt-1\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = PrivacyDisclaimer(privacyNote, theme).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -185,15 +189,15 @@ func EventNotificationForm(languageContent language.Content, theme theme.Mode) t
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var14 string
-		templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(languageContent.Events.Notification.SubmitButtonLabel)
+		templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(form.SubmitButtonLabel)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 51, Col: 58}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 54, Col: 28}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</button></form>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</button></div></form>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -201,7 +205,7 @@ func EventNotificationForm(languageContent language.Content, theme theme.Mode) t
 	})
 }
 
-func EventNotificationBanner(languageContent language.Content, theme theme.Mode) templ.Component {
+func EventNotificationBanner(privacyNote string, form models.EventNotification, theme theme.Mode) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -267,9 +271,9 @@ func EventNotificationBanner(languageContent language.Content, theme theme.Mode)
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var20 string
-		templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.JoinStringErrs(languageContent.Events.Notification.Title)
+		templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.JoinStringErrs(form.Title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 60, Col: 47}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 64, Col: 16}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var20))
 		if templ_7745c5c3_Err != nil {
@@ -302,9 +306,9 @@ func EventNotificationBanner(languageContent language.Content, theme theme.Mode)
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var23 string
-		templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinStringErrs(languageContent.Events.Notification.Subtitle)
+		templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinStringErrs(form.Subtitle)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 63, Col: 50}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 67, Col: 19}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var23))
 		if templ_7745c5c3_Err != nil {
@@ -314,7 +318,7 @@ func EventNotificationBanner(languageContent language.Content, theme theme.Mode)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = EventNotificationForm(languageContent, theme).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = EventNotificationForm(privacyNote, form, theme).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -438,7 +442,7 @@ func EventNotificationSuccess(message string, theme theme.Mode) templ.Component 
 		var templ_7745c5c3_Var33 string
 		templ_7745c5c3_Var33, templ_7745c5c3_Err = templ.JoinStringErrs(message)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 77, Col: 12}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 81, Col: 12}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var33))
 		if templ_7745c5c3_Err != nil {
@@ -520,7 +524,7 @@ func EventNotificationError(message string, theme theme.Mode) templ.Component {
 		var templ_7745c5c3_Var39 string
 		templ_7745c5c3_Var39, templ_7745c5c3_Err = templ.JoinStringErrs(message)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 85, Col: 12}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/notifications.templ`, Line: 89, Col: 12}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var39))
 		if templ_7745c5c3_Err != nil {

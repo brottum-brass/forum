@@ -1,0 +1,11 @@
+package html
+
+import (
+    "github.com/brottum-brass/forum/src/utils/theme"
+)
+
+templ PrivacyDisclaimer(text string, theme theme.Mode) {
+    <p class={ "text-[11px] leading-tight font-medium opacity-60 ", theme.SecondaryText }>
+        <span class="font-bold">GDPR:</span> { text }
+    </p>
+}

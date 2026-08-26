@@ -492,7 +492,7 @@ func MembersView(members []models.Member, lang language.Content, theme theme.Mod
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = MemberApplicationSection(lang.Members.ApplicationForm, theme).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = MemberApplicationSection(lang.Common.PrivacyNote, lang.Members.ApplicationForm, theme).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

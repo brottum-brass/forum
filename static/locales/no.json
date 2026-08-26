@@ -2,7 +2,8 @@
     "common": {
         "language": "no",
         "title": "Brøttum Brass",
-        "name": "Brøttum Brass"
+        "name": "Brøttum Brass",
+        "privacy_note": "Informasjonen du oppgir brukes kun til å behandle din henvendelse. Personopplysninger slettes innen 30 dager etter behandling."
     },
     "header": {
         "home": "Hjem",

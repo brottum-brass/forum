@@ -5,7 +5,7 @@ import (
 	"github.com/brottum-brass/forum/src/utils/theme"
 )
 
-templ ContactInquiryForm(form models.InquiryForm, theme theme.Mode) {
+templ ContactInquiryForm(privacyNote string, form models.InquiryForm, theme theme.Mode) {
 	<form 
 		id="contact-inquiry-form"
 		hx-post="/contact/inquiry" 
@@ -87,16 +87,20 @@ templ ContactInquiryForm(form models.InquiryForm, theme theme.Mode) {
 			></textarea>
 		</div>
 
-		<button 
-			type="submit" 
-			class={ "w-full sm:w-auto px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider border transition-all hover:opacity-90 active:scale-95 shadow-sm", theme.AccentBackground, theme.AccentText, theme.AccentBorder }
-		>
-			{ form.SubmitButtonLabel }
-		</button>
+		<div class="space-y-2 pt-1">
+			@PrivacyDisclaimer(privacyNote, theme)
+
+			<button 
+				type="submit" 
+				class={ "w-full sm:w-auto px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider border transition-all hover:opacity-90 active:scale-95 shadow-sm", theme.AccentBackground, theme.AccentText, theme.AccentBorder }
+			>
+				{ form.SubmitButtonLabel }
+			</button>
+		</div>
 	</form>
 }
 
-templ ContactInquirySection(form models.InquiryForm, theme theme.Mode) {
+templ ContactInquirySection(privacyNote string, form models.InquiryForm, theme theme.Mode) {
 	<div id="inquiry-form-container" class={ "p-6 sm:p-7 rounded-2xl border backdrop-blur-md space-y-4", theme.SecondaryBackground, theme.PrimaryBorder }>
 		<div>
 			<h2 class={ "text-xl font-extrabold tracking-tight", theme.PrimaryText }>
@@ -107,7 +111,7 @@ templ ContactInquirySection(form models.InquiryForm, theme theme.Mode) {
 			</p>
 		</div>
 
-		@ContactInquiryForm(form, theme)
+		@ContactInquiryForm(privacyNote, form, theme)
 	</div>
 }
 

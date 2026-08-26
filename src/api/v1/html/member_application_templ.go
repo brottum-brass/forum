@@ -13,7 +13,7 @@ import (
 	"github.com/brottum-brass/forum/src/utils/theme"
 )
 
-func MemberApplicationForm(form models.ApplicationForm, theme theme.Mode) templ.Component {
+func MemberApplicationForm(privacyNote string, form models.ApplicationForm, theme theme.Mode) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -734,7 +734,11 @@ func MemberApplicationForm(form models.ApplicationForm, theme theme.Mode) templ.
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 61, "\"></textarea></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 61, "\"></textarea></div><div class=\"space-y-2 pt-1\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = PrivacyDisclaimer(privacyNote, theme).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -763,13 +767,13 @@ func MemberApplicationForm(form models.ApplicationForm, theme theme.Mode) templ.
 		var templ_7745c5c3_Var64 string
 		templ_7745c5c3_Var64, templ_7745c5c3_Err = templ.JoinStringErrs(form.SubmitButtonLabel)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/member_application.templ`, Line: 162, Col: 27}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/member_application.templ`, Line: 165, Col: 28}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var64))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 64, "</button></form>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 64, "</button></div></form>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -777,7 +781,7 @@ func MemberApplicationForm(form models.ApplicationForm, theme theme.Mode) templ.
 	})
 }
 
-func MemberApplicationSection(form models.ApplicationForm, theme theme.Mode) templ.Component {
+func MemberApplicationSection(privacyNote string, form models.ApplicationForm, theme theme.Mode) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -845,7 +849,7 @@ func MemberApplicationSection(form models.ApplicationForm, theme theme.Mode) tem
 		var templ_7745c5c3_Var70 string
 		templ_7745c5c3_Var70, templ_7745c5c3_Err = templ.JoinStringErrs(form.Title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/member_application.templ`, Line: 173, Col: 36}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/member_application.templ`, Line: 177, Col: 36}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var70))
 		if templ_7745c5c3_Err != nil {
@@ -880,13 +884,13 @@ func MemberApplicationSection(form models.ApplicationForm, theme theme.Mode) tem
 		var templ_7745c5c3_Var73 string
 		templ_7745c5c3_Var73, templ_7745c5c3_Err = templ.JoinStringErrs(form.Subtitle)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/member_application.templ`, Line: 176, Col: 39}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/member_application.templ`, Line: 180, Col: 39}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var73))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 72, "</p></div><!-- Toggle Dropdown Button -->")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 72, "</p></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -934,7 +938,7 @@ func MemberApplicationSection(form models.ApplicationForm, theme theme.Mode) tem
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = MemberApplicationForm(form, theme).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = MemberApplicationForm(privacyNote, form, theme).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -1058,7 +1062,7 @@ func MemberApplicationSuccess(message string, theme theme.Mode) templ.Component 
 		var templ_7745c5c3_Var87 string
 		templ_7745c5c3_Var87, templ_7745c5c3_Err = templ.JoinStringErrs(message)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/member_application.templ`, Line: 199, Col: 12}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/member_application.templ`, Line: 202, Col: 12}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var87))
 		if templ_7745c5c3_Err != nil {
@@ -1118,7 +1122,7 @@ func MemberApplicationError(message string, theme theme.Mode) templ.Component {
 		var templ_7745c5c3_Var91 string
 		templ_7745c5c3_Var91, templ_7745c5c3_Err = templ.JoinStringErrs(message)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/member_application.templ`, Line: 207, Col: 12}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `src/api/v1/html/member_application.templ`, Line: 210, Col: 12}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var91))
 		if templ_7745c5c3_Err != nil {
