@@ -165,18 +165,28 @@ templ MemberApplicationForm(form models.ApplicationForm, theme theme.Mode) {
 }
 
 templ MemberApplicationSection(form models.ApplicationForm, theme theme.Mode) {
-	<div id="application-form-container" class={ "p-6 sm:p-7 rounded-2xl border backdrop-blur-md space-y-4", theme.SecondaryBackground, theme.PrimaryBorder }>
-		<div>
-			<h2 class={ "text-xl font-extrabold tracking-tight", theme.PrimaryText }>
-				{ form.Title }
-			</h2>
-			<p class={ "text-xs font-medium opacity-80 mt-0.5", theme.SecondaryText }>
-				{ form.Subtitle }
-			</p>
-		</div>
+    <div id="application-form-container" class={ "p-6 sm:p-7 rounded-2xl border backdrop-blur-md ", theme.SecondaryBackground, theme.PrimaryBorder }>
+        <details class="group">
+            <summary class="flex items-center justify-between cursor-pointer list-none focus:outline-none">
+                <div>
+                    <h2 class={ "text-xl font-extrabold tracking-tight ", theme.PrimaryText }>
+                        { form.Title }
+                    </h2>
+                    <p class={ "text-xs font-medium opacity-80 mt-0.5 ", theme.SecondaryText }>
+                        { form.Subtitle }
+                    </p>
+                </div>
 
-		@MemberApplicationForm(form, theme)
-	</div>
+                <div class={ "p-2 rounded-xl border shrink-0 transition-transform duration-200 group-open:rotate-180 ", theme.PrimaryBorder, theme.HoverBackground }>
+                    <img src="/static/icons/chevron-down.svg" alt="Toggle Form" class={ "w-4 h-4 " + theme.IconFilter }/>
+                </div>
+            </summary>
+
+            <div class="pt-6">
+                @MemberApplicationForm(form, theme)
+            </div>
+        </details>
+    </div>
 }
 
 templ MemberApplicationSuccess(message string, theme theme.Mode) {
